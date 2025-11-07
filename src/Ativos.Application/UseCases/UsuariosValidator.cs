@@ -1,0 +1,17 @@
+using Ativos.Communication.Requests;
+using Ativos.Exception;
+using FluentValidation;
+
+namespace Ativos.Application.UseCases;
+
+public class UsuariosValidator : AbstractValidator<RequestUsuariosJson>
+{
+    public UsuariosValidator()
+    {
+        RuleFor(usuarios => usuarios.P_nome).NotEmpty().WithMessage(ResourceErrorMessages.NAME_REQUIRED);
+        RuleFor(usuarios => usuarios.Sobrenome).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
+        RuleFor(usuarios => usuarios.Cargo).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
+        RuleFor(usuarios => usuarios.Departamento).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
+        RuleFor(usuarios => usuarios.Matricula).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
+    }
+}
