@@ -16,7 +16,7 @@ public class UsuariosController : Controller
     [ProducesResponseType(typeof(ResponseRegisterUsuariosJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     [Route("register")]
-    public async Task<IActionResult> RegisterAtivos([FromServices] IRegisterUsuariosUseCase useCase, [FromBody] RequestUsuariosJson request)
+    public async Task<IActionResult> RegisterUsuarios([FromServices] IRegisterUsuariosUseCase useCase, [FromBody] RequestUsuariosJson request)
     {
         var response = await useCase.Execute(request);
         return Created(string.Empty, response);

@@ -21,7 +21,7 @@ namespace Ativos.Exception {
         private static System.Globalization.CultureInfo resourceCulture;
         
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResourceErrorMessages() {
+        public ResourceErrorMessages() {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -60,6 +60,12 @@ namespace Ativos.Exception {
         public static string FIELD_REQUIRED {
             get {
                 return ResourceManager.GetString("FIELD_REQUIRED", resourceCulture);
+            }
+        }
+        
+        public static string INVALID_PASSWORD {
+            get {
+                return ResourceManager.GetString("INVALID_PASSWORD", resourceCulture);
             }
         }
     }

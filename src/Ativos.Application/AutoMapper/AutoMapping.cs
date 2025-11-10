@@ -17,7 +17,8 @@ public class AutoMapping : Profile
     private void RequestToEntity()
     {
         CreateMap<RequestAtivosJson, Ativo>();
-        CreateMap<RequestUsuariosJson, Usuario>();
+        CreateMap<RequestUsuariosJson, Usuario>() //ignora os dados password para criptografia da senha
+            .ForMember(dest => dest.Password, config => config.Ignore());
         CreateMap<RequestChamadosJson, Chamado>();
         CreateMap<RequestContratosJson, Contrato>();
         CreateMap<RequestLicencasJson, Licenca>();

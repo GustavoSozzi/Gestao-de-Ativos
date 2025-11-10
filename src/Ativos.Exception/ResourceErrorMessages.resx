@@ -27,4 +27,7 @@
     <data name="FIELD_REQUIRED" xml:space="preserve">
         <value>This field is required.</value>
     </data>
+    <data name="INVALID_PASSWORD" xml:space="preserve">
+        <value>Invalid password</value>
+    </data>
 </root>

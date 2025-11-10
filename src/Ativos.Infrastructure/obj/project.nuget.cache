@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "YM2V5q4uZjg=",
+  "dgSpecHash": "Jeo3877P3RM=",
   "success": true,
   "projectFilePath": "/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Infrastructure/Ativos.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/Users/gustavosozzibom/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.entityframeworkcore/8.0.21/microsoft.entityframeworkcore.8.0.21.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.entityframeworkcore.abstractions/8.0.21/microsoft.entityframeworkcore.abstractions.8.0.21.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.entityframeworkcore.analyzers/8.0.21/microsoft.entityframeworkcore.analyzers.8.0.21.nupkg.sha512",

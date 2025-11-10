@@ -33,10 +33,6 @@ namespace Ativos.Infrastructure.Migrations
                     b.Property<long>("CodInventario")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("Id_Localizacao")
-                        .HasColumnType("bigint")
-                        .HasColumnName("id_localizacao");
-
                     b.Property<string>("Modelo")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -52,9 +48,13 @@ namespace Ativos.Infrastructure.Migrations
                     b.Property<string>("Tipo")
                         .HasColumnType("longtext");
 
+                    b.Property<long>("id_localizacao")
+                        .HasColumnType("bigint")
+                        .HasColumnName("id_localizacao");
+
                     b.HasKey("Id_ativo");
 
-                    b.HasIndex("Id_Localizacao");
+                    b.HasIndex("id_localizacao");
 
                     b.ToTable("Ativos");
                 });
@@ -194,9 +194,20 @@ namespace Ativos.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Sobrenome")
                         .IsRequired()
                         .HasColumnType("longtext");
+
+                    b.Property<Guid>("UserIdentifier")
+                        .HasColumnType("char(36)");
 
                     b.HasKey("Id_usuario");
 
@@ -222,7 +233,7 @@ namespace Ativos.Infrastructure.Migrations
                 {
                     b.HasOne("Ativos.Domain.Entities.Localizacao", "localizacao")
                         .WithMany("ativos")
-                        .HasForeignKey("Id_Localizacao")
+                        .HasForeignKey("id_localizacao")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

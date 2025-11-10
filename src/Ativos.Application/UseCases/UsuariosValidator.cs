@@ -13,5 +13,6 @@ public class UsuariosValidator : AbstractValidator<RequestUsuariosJson>
         RuleFor(usuarios => usuarios.Cargo).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
         RuleFor(usuarios => usuarios.Departamento).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
         RuleFor(usuarios => usuarios.Matricula).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
+        RuleFor(usuarios => usuarios.Password).SetValidator(new PasswordValidator<RequestUsuariosJson>());
     }
 }

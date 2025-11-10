@@ -20,4 +20,7 @@
     <data name="FIELD_REQUIRED" xml:space="preserve">
         <value>O campo é obrigatório</value>
     </data>
+    <data name="INVALID_PASSWORD" xml:space="preserve">
+        <value>Sua senha deve ter no minimo 8 caracteres, contendo pelo menos uma letra maiuscula, uma letra minuscula, um numero e um caractere especial.</value>
+    </data>
 </root>

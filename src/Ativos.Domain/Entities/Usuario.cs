@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ativos.Domain.Enums;
 
 namespace Ativos.Domain.Entities;
 
@@ -13,5 +14,8 @@ public class Usuario
     public long Matricula { get; set; }
     public string Departamento { get; set; } = string.Empty;
     public string Cargo { get; set; } = string.Empty;
+    public Guid UserIdentifier { get; set; }
+    public string Role { get; set; } = Roles.TEAM_MEMBER;
+    public string Password {get; set; } = string.Empty;
     public List<Licenca> licencas { get; } = [];
 }

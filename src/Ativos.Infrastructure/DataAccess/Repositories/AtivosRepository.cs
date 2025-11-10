@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ativos.Infrastructure.DataAccess.Repositories;
 
-internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRepository
+internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRepository, IAtivosUpdateOnlyRepository
 {
     //encapsulam o acesso a dados. Eles escondem os detalhes do banco de dados e expõem métodos para adicionar, buscar, atualizar ou remover entidades
     private readonly AtivosDbContext _dbContext;
