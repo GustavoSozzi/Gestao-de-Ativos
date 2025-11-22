@@ -19,11 +19,42 @@ internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRep
         await _dbContext.Ativos.AddAsync(ativo);
     }
 
-    public async Task<List<Ativo>> GetAll()
+    public async Task<List<Ativo>> GetAll(string? nome = null, string? modelo = null, string? tipo = null, 
+        long? codInventario = null, string? cidade = null, string? estado = null, 
+        long? matriculaUsuario = null, string? nomeUsuario = null)
     {
-        return await _dbContext.Ativos
+        var query = _dbContext.Ativos
             .Include(a => a.localizacao)
-            .ToListAsync();
+            .Include(a => a.Usuario)
+            .AsQueryable();
+
+        // Filtros de busca
+        if (!string.IsNullOrWhiteSpace(nome))
+            query = query.Where(a => a.Nome.Contains(nome));
+
+        if (!string.IsNullOrWhiteSpace(modelo))
+            query = query.Where(a => a.Modelo.Contains(modelo));
+
+        if (!string.IsNullOrWhiteSpace(tipo))
+            query = query.Where(a => a.Tipo != null && a.Tipo.Contains(tipo));
+
+        if (codInventario.HasValue)
+            query = query.Where(a => a.CodInventario == codInventario.Value);
+
+        if (!string.IsNullOrWhiteSpace(cidade))
+            query = query.Where(a => a.localizacao.Cidade.Contains(cidade));
+
+        if (!string.IsNullOrWhiteSpace(estado))
+            query = query.Where(a => a.localizacao.Estado.Contains(estado));
+
+        if (matriculaUsuario.HasValue)
+            query = query.Where(a => a.Usuario != null && a.Usuario.Matricula == matriculaUsuario.Value);
+
+        if (!string.IsNullOrWhiteSpace(nomeUsuario))
+            query = query.Where(a => a.Usuario != null && 
+                (a.Usuario.P_nome.Contains(nomeUsuario) || a.Usuario.Sobrenome.Contains(nomeUsuario)));
+
+        return await query.ToListAsync();
     }
 
     public async Task<Ativo?> GetById(long id)

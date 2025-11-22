@@ -17,5 +17,7 @@ public class Usuario
     public Guid UserIdentifier { get; set; }
     public string Role { get; set; } = Roles.TEAM_MEMBER;
     public string Password {get; set; } = string.Empty;
+    
+    public ICollection<Ativo> Ativos { get; } = new List<Ativo>(); /// Collection navigation containing dependents
     public List<Licenca> licencas { get; } = [];
 }

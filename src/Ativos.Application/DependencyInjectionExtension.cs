@@ -2,6 +2,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Ativos.Application.AutoMapper;
 using Ativos.Application.UseCases.Delete.Ativos;
 using Ativos.Application.UseCases.GetAll;
+using Ativos.Application.UseCases.GetAll.Usuarios;
+using Ativos.Application.UseCases.Login.DoLogin;
 using Ativos.Application.UseCases.Register.Ativos;
 using Ativos.Application.UseCases.Register.Chamados;
 using Ativos.Application.UseCases.Register.Contratos;
@@ -28,6 +30,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAllAtivosUseCase,  GetAllAtivosUseCase>();
         services.AddScoped<IUpdateAtivosUseCase,  UpdateAtivosUseCase>();
         services.AddScoped<IRegisterUsuariosUseCase, RegisterUsuariosUseCase>();
+        services.AddScoped<IGetAllUsuarioUseCase, GetAllUsuarioUseCase>();
+        services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IRegisterChamadosUseCase, RegisterChamadosUseCase>();
         services.AddScoped<IRegisterContratosUseCase, RegisterContratosUseCase>();
         services.AddScoped<IRegisterLicencasUseCase, RegisterLicencasUseCase>();

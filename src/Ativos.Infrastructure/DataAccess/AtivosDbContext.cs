@@ -6,7 +6,7 @@ internal class AtivosDbContext : DbContext
 {
     public AtivosDbContext(DbContextOptions options) : base(options) {}
     
-    //Segundo parametro: nome da tabela no banco de dads
+    //Segundo parametro: nome da tabela no banco de dados
     public DbSet<Ativo> Ativos { get; set; }
     public DbSet<Usuario> Usuario { get; set; }
     public DbSet<Chamado> Chamados {get; set;}

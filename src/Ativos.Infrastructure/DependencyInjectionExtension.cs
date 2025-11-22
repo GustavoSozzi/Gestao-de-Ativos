@@ -7,7 +7,9 @@ using Ativos.Domain.Repositories.Licencas;
 using Ativos.Domain.Repositories.Localizacao;
 using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Domain.Security.Cryptography;
+using Ativos.Domain.Security.Tokens;
 using Ativos.Infrastructure.DataAccess.Repositories;
+using Ativos.Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,11 +21,20 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddDbContext(services, configuration);
+        Addtoken(services, configuration);
         AddRepositories(services);
 
         services.AddScoped<IPasswordEncripter, Security.BCrypt>();
     }
 
+    private static void Addtoken(IServiceCollection services, IConfiguration configuration)
+    {
+        var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpiresMinutes");
+        var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+        
+        services.AddScoped<IAccessTokenGenerator>(config => new JwtTokenGenerator(expirationTimeMinutes, signingKey!)); //nao nulo
+    }
+    
     private static void AddRepositories(IServiceCollection services)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();

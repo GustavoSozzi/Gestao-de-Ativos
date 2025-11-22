@@ -15,3 +15,4 @@
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Exception/obj/Debug/net8.0/Ativos.Exception.csproj.GenerateResource.cache
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Exception/obj/Debug/net8.0/pt-br/Ativos.Exception.resources.cs
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Exception/obj/Debug/net8.0/pt-br/Ativos.Exception.resources.dll
+/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Exception/obj/Debug/net8.0/Ativos.Exception.sourcelink.json

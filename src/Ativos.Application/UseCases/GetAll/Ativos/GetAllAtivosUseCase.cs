@@ -15,9 +15,11 @@ public class GetAllAtivosUseCase : IGetAllAtivosUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponseAtivosJson> Execute()
+    public async Task<ResponseAtivosJson> Execute(string? nome = null, string? modelo = null, string? tipo = null, 
+        long? codInventario = null, string? cidade = null, string? estado = null, 
+        long? matriculaUsuario = null, string? nomeUsuario = null)
     {
-        var result = await _repository.GetAll();
+        var result = await _repository.GetAll(nome, modelo, tipo, codInventario, cidade, estado, matriculaUsuario, nomeUsuario);
 
         return new ResponseAtivosJson
         {

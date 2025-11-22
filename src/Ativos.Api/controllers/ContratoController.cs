@@ -3,11 +3,15 @@ using Ativos.Application.UseCases.Register.Contratos;
 using Ativos.Communication.Requests;
 using Ativos.Communication.responses;
 using Ativos.Communication.responses.Register;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ativos.Api.controllers;
 
-public class ContratoController : Controller
+[Route("api/[controller]")]
+[ApiController]
+[Authorize]
+public class ContratoController : ControllerBase
 {
     //Contratos Controller
     [HttpPost]

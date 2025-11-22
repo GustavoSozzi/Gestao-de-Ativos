@@ -9,3 +9,4 @@
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Domain/obj/Debug/net8.0/refint/Ativos.Domain.dll
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Domain/obj/Debug/net8.0/Ativos.Domain.pdb
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Domain/obj/Debug/net8.0/ref/Ativos.Domain.dll
+/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Domain/obj/Debug/net8.0/Ativos.Domain.sourcelink.json

@@ -6,12 +6,14 @@ using Ativos.Application.UseCases.Update;
 using Ativos.Communication.Requests;
 using Ativos.Communication.responses;
 using Ativos.Communication.responses.Register;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AtivosController : Controller
+[Authorize]
+public class AtivosController : ControllerBase
 {
     //Ativos Controller
     [HttpPost]
@@ -29,9 +31,18 @@ public class AtivosController : Controller
     [HttpGet]
     [ProducesResponseType(typeof(ResponseRegisterAtivosJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetAllAtivos([FromServices] IGetAllAtivosUseCase useCase)
+    public async Task<IActionResult> GetAllAtivos(
+        [FromServices] IGetAllAtivosUseCase useCase,
+        [FromQuery] string? nome = null,
+        [FromQuery] string? modelo = null,
+        [FromQuery] string? tipo = null,
+        [FromQuery] long? codInventario = null,
+        [FromQuery] string? cidade = null,
+        [FromQuery] string? estado = null,
+        [FromQuery] long? matriculaUsuario = null,
+        [FromQuery] string? nomeUsuario = null)
     {
-        var response = await useCase.Execute();
+        var response = await useCase.Execute(nome, modelo, tipo, codInventario, cidade, estado, matriculaUsuario, nomeUsuario);
         if (response.Ativos.Count != 0)
             return Ok(response);
 

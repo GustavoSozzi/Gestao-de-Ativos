@@ -52,9 +52,14 @@ namespace Ativos.Infrastructure.Migrations
                         .HasColumnType("bigint")
                         .HasColumnName("id_localizacao");
 
+                    b.Property<long?>("id_usuario")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id_ativo");
 
                     b.HasIndex("id_localizacao");
+
+                    b.HasIndex("id_usuario");
 
                     b.ToTable("Ativos");
                 });
@@ -237,6 +242,12 @@ namespace Ativos.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Ativos.Domain.Entities.Usuario", "Usuario")
+                        .WithMany("Ativos")
+                        .HasForeignKey("id_usuario");
+
+                    b.Navigation("Usuario");
+
                     b.Navigation("localizacao");
                 });
 
@@ -274,6 +285,11 @@ namespace Ativos.Infrastructure.Migrations
             modelBuilder.Entity("Ativos.Domain.Entities.Localizacao", b =>
                 {
                     b.Navigation("ativos");
+                });
+
+            modelBuilder.Entity("Ativos.Domain.Entities.Usuario", b =>
+                {
+                    b.Navigation("Ativos");
                 });
 #pragma warning restore 612, 618
         }

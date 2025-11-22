@@ -1,3 +1,5 @@
+using Ativos.Communication.responses.Usuarios;
+
 namespace Ativos.Communication.responses;
 
 public class ResponseShortAtivoJson
@@ -9,6 +11,8 @@ public class ResponseShortAtivoJson
     public string SerialNumber { get; set; } = string.Empty;
     public long CodInventario { get; set; }
     public string? Tipo { get; set; }
+    public long? id_usuario { get; set; }
     
     public ResponseShortLocalizacaoJson localizacao { get; set; }
+    public ResponseShortUsuarioJson? Usuario { get; set; }
 }

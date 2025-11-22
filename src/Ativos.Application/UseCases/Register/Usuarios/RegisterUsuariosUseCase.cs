@@ -5,6 +5,7 @@ using Ativos.Domain.Entities;
 using Ativos.Domain.Repositories;
 using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Domain.Security.Cryptography;
+using Ativos.Domain.Security.Tokens;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
 using FluentValidation.Results;
@@ -15,14 +16,21 @@ public class RegisterUsuariosUseCase : IRegisterUsuariosUseCase
 {
     private readonly IUsuariosWriteOnlyRepository _repository;
     private readonly IUsuariosReadOnlyRepository _userReadOnlyRepository;
+    private readonly IAccessTokenGenerator _tokenGenerator;
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public RegisterUsuariosUseCase(IUsuariosWriteOnlyRepository repository, IUsuariosReadOnlyRepository userReadOnlyRepository, IPasswordEncripter passwordEncripter, IUnitOfWork unitOfWork, IMapper mapper)
+    public RegisterUsuariosUseCase(IUsuariosWriteOnlyRepository repository,
+        IAccessTokenGenerator tokenGenerator,
+        IUsuariosReadOnlyRepository userReadOnlyRepository, 
+        IPasswordEncripter passwordEncripter, 
+        IUnitOfWork unitOfWork, 
+        IMapper mapper)
     {
         _repository = repository;
         _userReadOnlyRepository = userReadOnlyRepository;
+        _tokenGenerator = tokenGenerator;
         _passwordEncripter = passwordEncripter;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
@@ -40,7 +48,10 @@ public class RegisterUsuariosUseCase : IRegisterUsuariosUseCase
         
         await _unitOfWork.Commit();
         
-        return _mapper.Map<ResponseRegisterUsuariosJson>(entity);
+        var response = _mapper.Map<ResponseRegisterUsuariosJson>(entity);
+        response.Token = _tokenGenerator.Generate(entity);
+        
+        return response;
     }
 
     private async Task ValidateUsuarios(RequestUsuariosJson request)

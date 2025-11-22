@@ -3,13 +3,15 @@ using Ativos.Application.UseCases.Register.Localizacao;
 using Ativos.Communication.Requests;
 using Ativos.Communication.responses;
 using Ativos.Communication.responses.Register;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class LocalizacaoController : Controller
+[Authorize]
+public class LocalizacaoController : ControllerBase
 {
     //Localizacao Controller
     [HttpPost]

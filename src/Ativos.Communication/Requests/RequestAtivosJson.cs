@@ -7,7 +7,9 @@ public class RequestAtivosJson
     public string SerialNumber { get; set; } = string.Empty;
     public long CodInventario { get; set; }
     public string? Tipo { get; set; }
-
     
     public long id_localizacao { get; set; }
+    
+    public long id_usuario { get; set; }
+
 }
