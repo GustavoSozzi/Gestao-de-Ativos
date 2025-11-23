@@ -1,7 +1,4 @@
-using Ativos.Communication.responses;
 using Ativos.Communication.responses.Usuarios;
-using Ativos.Domain.Entities;
-using Ativos.Domain.Repositories.Localizacao;
 using Ativos.Domain.Repositories.Usuarios;
 using AutoMapper;
 
@@ -18,20 +15,10 @@ public class GetAllUsuarioUseCase : IGetAllUsuarioUseCase
         _mapper = mapper;
     }
 
-    public async Task<ResponseUsuariosJson> Execute(long? matricula = null)
+    public async Task<ResponseUsuariosJson> Execute(long? matricula = null, string? nome = null, 
+        string? departamento = null, string? cargo = null, string? role = null)
     {
-        if (matricula.HasValue)
-        {
-            var usuario = await _repository.GetUserByMatricula((int)matricula.Value);
-            var usuarios = usuario != null ? new List<Usuario> { usuario } : new List<Usuario>();
-            
-            return new ResponseUsuariosJson()
-            {
-                Usuarios = _mapper.Map<List<ResponseShortUsuarioJson>>(usuarios)
-            };
-        }
-        
-        var result = await _repository.GetAll();
+        var result = await _repository.GetAll(matricula, nome, departamento, cargo, role);
 
         return new ResponseUsuariosJson()
         {

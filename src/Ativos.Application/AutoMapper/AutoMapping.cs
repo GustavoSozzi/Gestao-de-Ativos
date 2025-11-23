@@ -33,6 +33,7 @@ public class AutoMapping : Profile
         CreateMap<Ativo, ResponseAtivosJson>();
         CreateMap<Usuario, ResponseRegisterUsuariosJson>();
         CreateMap<Usuario, ResponseShortUsuarioJson>();
+        CreateMap<Usuario, ResponseUsuarioJson>();
         CreateMap<Usuario, ResponseUsuariosJson>();
         CreateMap<Chamado, ResponseRegisterChamadosJson>();
         CreateMap<Contrato, ResponseRegisterContratosJson>();
