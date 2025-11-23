@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Ativos.Application.AutoMapper;
 using Ativos.Application.UseCases.Delete.Ativos;
+using Ativos.Application.UseCases.Delete.Usuarios;
 using Ativos.Application.UseCases.GetAll;
 using Ativos.Application.UseCases.GetAll.Usuarios;
 using Ativos.Application.UseCases.GetById;
@@ -42,5 +43,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IRegisterLocalizacaoUseCase, RegisterLocalizacaoUseCase>();
         services.AddScoped<IGetAllLocalizacaoUseCase, GetAllLocalizacoUseCase>();
         services.AddScoped<IDeleteAtivoUseCase, DeleteAtivoUseCase>();
+        services.AddScoped<IDeleteUsuarioUseCase, DeleteUsuarioUseCase>();
     }
 }

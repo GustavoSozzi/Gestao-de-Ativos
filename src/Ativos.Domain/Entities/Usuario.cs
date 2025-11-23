@@ -18,6 +18,6 @@ public class Usuario
     public string Role { get; set; } = Roles.TEAM_MEMBER;
     public string Password {get; set; } = string.Empty;
     
-    public ICollection<Ativo> Ativos { get; } = new List<Ativo>(); /// Collection navigation containing dependents
+    public ICollection<Ativo> Ativos { get; } = new List<Ativo>(); /// Collection navigation containing dependents, to relations in databases
     public List<Licenca> licencas { get; } = [];
 }

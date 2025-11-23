@@ -31,7 +31,15 @@ public class UpdateUsuariosUseCase : IUpdateUsuariosUseCase
             throw new NotFoundException("NOT FOUND");
         }
 
+        var currentPassword = usuario.Password;
+        
         _mapper.Map(request, usuario);
+
+        // Se o password não foi fornecido, mantém o atual
+        if (string.IsNullOrWhiteSpace(request.Password))
+        {
+            usuario.Password = currentPassword;
+        }
 
         _repository.Update(usuario);
 
@@ -40,7 +48,7 @@ public class UpdateUsuariosUseCase : IUpdateUsuariosUseCase
 
     private void Validate(RequestUsuariosJson request)
     {
-        var validator = new UsuariosValidator();
+        var validator = new UpdateUsuariosValidator();
 
         var result = validator.Validate(request);
 

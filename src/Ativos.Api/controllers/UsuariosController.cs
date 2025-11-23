@@ -1,6 +1,6 @@
+using Ativos.Application.UseCases.Delete.Usuarios;
 using Ativos.Application.UseCases.GetAll.Usuarios;
 using Ativos.Application.UseCases.GetById;
-using Ativos.Application.UseCases.Register.Ativos;
 using Ativos.Application.UseCases.Register.Usuarios;
 using Ativos.Application.UseCases.Update.Usuarios;
 using Ativos.Communication.Requests;
@@ -68,6 +68,17 @@ public class UsuariosController : ControllerBase
         [FromBody] RequestUsuariosJson request)
     {
         await useCase.Execute(id, request);
+        
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> Delete([FromServices] IDeleteUsuarioUseCase useCase, [FromRoute] long id)
+    {
+        await useCase.Execute(id);
         
         return NoContent();
     }
