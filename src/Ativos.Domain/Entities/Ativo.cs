@@ -19,10 +19,10 @@ public class Ativo
     
     [ForeignKey("id_localizacao")]
     public Localizacao localizacao { get; set; } = null!;
-    public ICollection<Chamado> Chamados { get;} = new List<Chamado>();
     
     public long? id_usuario { get; set; } 
     
     [ForeignKey("id_usuario")]
     public Usuario? Usuario { get; set; } = null!;
+    public ICollection<Chamado> Chamados { get;} = new List<Chamado>(); //chamado (0, n)
 }

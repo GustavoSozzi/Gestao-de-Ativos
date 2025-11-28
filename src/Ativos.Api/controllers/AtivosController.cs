@@ -1,5 +1,6 @@
 using Ativos.Application.UseCases.Delete.Ativos;
 using Ativos.Application.UseCases.GetAll;
+using Ativos.Application.UseCases.GetById;
 using Microsoft.AspNetCore.Mvc;
 using Ativos.Application.UseCases.Register.Ativos;
 using Ativos.Application.UseCases.Update;
@@ -47,6 +48,17 @@ public class AtivosController : ControllerBase
             return Ok(response);
 
         return NoContent();
+    }
+    
+    [HttpGet] //Get ativos by id
+    [Route("{id}")]
+    [ProducesResponseType(typeof(ResponseAtivoJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetById([FromServices] IGetAtivoByIdUseCase useCase, [FromRoute] long id)
+    {
+        var response = await useCase.Execute(id);
+
+        return Ok(response);
     }
     
     [HttpDelete]

@@ -1,5 +1,6 @@
 using Ativos.Communication.Requests;
 using Ativos.Communication.responses;
+using Ativos.Communication.responses.Chamados;
 using Ativos.Communication.responses.Register;
 using Ativos.Communication.responses.Usuarios;
 using Ativos.Domain.Entities;
@@ -31,11 +32,14 @@ public class AutoMapping : Profile
         CreateMap<Ativo, ResponseRegisterAtivosJson>();
         CreateMap<Ativo, ResponseShortAtivoJson>();
         CreateMap<Ativo, ResponseAtivosJson>();
+        CreateMap<Ativo, ResponseAtivoJson>();
         CreateMap<Usuario, ResponseRegisterUsuariosJson>();
         CreateMap<Usuario, ResponseShortUsuarioJson>();
         CreateMap<Usuario, ResponseUsuarioJson>();
         CreateMap<Usuario, ResponseUsuariosJson>();
         CreateMap<Chamado, ResponseRegisterChamadosJson>();
+        CreateMap<Chamado, ResponseChamadosJson>();
+        CreateMap<Chamado, ResponseShortChamadoJson>();
         CreateMap<Contrato, ResponseRegisterContratosJson>();
         CreateMap<Licenca, ResponseRegisterLicencasJson>();
         CreateMap<Localizacao, ResponseRegisterLocalizacaoJson>();

@@ -14,3 +14,5 @@
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Infrastructure/obj/Debug/net8.0/Ativos.Infrastructure.pdb
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Infrastructure/obj/Debug/net8.0/ref/Ativos.Infrastructure.dll
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Infrastructure/obj/Debug/net8.0/Ativos.Infrastructure.sourcelink.json
+/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Infrastructure/bin/Debug/net8.0/Ativos.Infrastructure.runtimeconfig.json
+/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Infrastructure/obj/Debug/net8.0/Ativos.Infrastructure.genruntimeconfig.cache

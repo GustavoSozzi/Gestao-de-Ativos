@@ -73,18 +73,16 @@ namespace Ativos.Infrastructure.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id_Chamado"));
 
-                    b.Property<long>("AtivoId_ativo")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("Data_Abertura")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Descricao_Problema")
+                    b.Property<string>("Descricao")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<long>("Id_Ativo")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Solucao")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Status_Chamado")
                         .HasColumnType("int");
@@ -93,9 +91,12 @@ namespace Ativos.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<long>("id_Ativo")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id_Chamado");
 
-                    b.HasIndex("AtivoId_ativo");
+                    b.HasIndex("id_Ativo");
 
                     b.ToTable("Chamados");
                 });
@@ -255,7 +256,7 @@ namespace Ativos.Infrastructure.Migrations
                 {
                     b.HasOne("Ativos.Domain.Entities.Ativo", "Ativo")
                         .WithMany("Chamados")
-                        .HasForeignKey("AtivoId_ativo")
+                        .HasForeignKey("id_Ativo")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
