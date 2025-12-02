@@ -510,12 +510,4 @@ Este projeto é proprietário e confidencial. Todos os direitos reservados.
 
 ---
 
-## 📞 Suporte
-
-Para dúvidas ou problemas:
-- Email: suporte@empresa.com
-- Telefone: (XX) XXXX-XXXX
-
----
-
 **Última atualização:** Dezembro 2024
