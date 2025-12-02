@@ -99,7 +99,7 @@ Antes de começar, certifique-se de ter instalado:
 ### 1. Clone o Repositório
 
 ```bash
-git clone <url-do-repositorio>
+git clone https://github.com/GustavoSozzi/Gestao-de-Ativos
 cd GestaoDeAtivosApi
 ```
 
