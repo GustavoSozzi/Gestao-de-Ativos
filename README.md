@@ -496,12 +496,7 @@ dotnet ef database update
 
 ---
 
-## 👥 Equipe de Desenvolvimento
-
-- **Desenvolvedor Backend:** [Nome]
-- **Desenvolvedor Frontend:** [Nome]
-- **DBA:** [Nome]
-
+## 👥 GUSTAVO SOZZI BOM
 ---
 
 ## 📄 Licença
