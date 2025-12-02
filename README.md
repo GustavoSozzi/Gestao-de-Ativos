@@ -415,7 +415,12 @@ Authorization: Bearer {seu-token-aqui}
 - ✅ Vinculação com ativos
 - ✅ Controle de valores
 
----
+--- 
+
+### 6. Modelo Relacional
+<img width="1103" height="540" alt="Modelo ER - Corrigido" src="https://github.com/user-attachments/assets/38d33c0a-b8cb-4e5a-926a-e1c57a2d7a7e" />
+
+### 
 
 ## 📚 Documentação Adicional
 
