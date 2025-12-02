@@ -49,6 +49,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IChamadosUpdateOnlyRepository, ChamadosRepository>();
         services.AddScoped<IContratosWriteOnlyRepository, ContratosRepository>();
         services.AddScoped<ILicencasWriteOnlyRepository, LicencasRepository>();
+        services.AddScoped<ILicencasReadOnlyRepository, LicencasRepository>();
         services.AddScoped<ILocalizacaoWriteOnlyRepository, LocalizacaoRepository>();
         services.AddScoped<ILocalizacaoReadOnlyRepository, LocalizacaoRepository>();
     }

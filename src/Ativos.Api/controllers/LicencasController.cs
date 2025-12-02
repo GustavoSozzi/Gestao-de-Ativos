@@ -1,3 +1,4 @@
+using Ativos.Application.UseCases.GetAll.Licencas;
 using Ativos.Application.UseCases.Register.Licencas;
 using Ativos.Communication.Requests;
 using Ativos.Communication.responses;
@@ -9,7 +10,7 @@ namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+[Authorize] //apenas se estiver logado acessa as funcoes da API
 public class LicencasController : ControllerBase
 {
     //Licencas Controller
@@ -21,5 +22,18 @@ public class LicencasController : ControllerBase
     {
         var response = await useCase.Execute(request);
         return Created(string.Empty, response);
+    }
+    
+    //GetAllLicencas
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseRegisterLicencasJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> GetAllLicencas([FromServices] IGetAllLicencasUseCase useCase)
+    {
+        var response = await useCase.Execute();
+        if (response.Licencas.Count != 0)
+            return Ok(response);
+
+        return NoContent();
     }
 }

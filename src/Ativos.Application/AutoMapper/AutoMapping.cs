@@ -21,6 +21,7 @@ public class AutoMapping : Profile
         CreateMap<RequestAtivosJson, Ativo>();
         CreateMap<RequestUsuariosJson, Usuario>() //ignora os dados password para criptografia da senha
             .ForMember(dest => dest.Password, config => config.Ignore());
+        CreateMap<RequestVincularLicencaJson, Licenca>();
         CreateMap<RequestChamadosJson, Chamado>();
         CreateMap<RequestContratosJson, Contrato>();
         CreateMap<RequestLicencasJson, Licenca>();
@@ -37,11 +38,14 @@ public class AutoMapping : Profile
         CreateMap<Usuario, ResponseShortUsuarioJson>();
         CreateMap<Usuario, ResponseUsuarioJson>();
         CreateMap<Usuario, ResponseUsuariosJson>();
+        CreateMap<Usuario, ResponseRegisterUsuariosLicencasJson>();
         CreateMap<Chamado, ResponseRegisterChamadosJson>();
         CreateMap<Chamado, ResponseChamadosJson>();
         CreateMap<Chamado, ResponseShortChamadoJson>();
         CreateMap<Contrato, ResponseRegisterContratosJson>();
         CreateMap<Licenca, ResponseRegisterLicencasJson>();
+        CreateMap<Licenca, ResponseLicencasJson >();
+        CreateMap<Licenca, ResponseShortLicencaJson>();
         CreateMap<Localizacao, ResponseRegisterLocalizacaoJson>();
         CreateMap<Localizacao, ResponseLocalizacaoJson>();
         CreateMap<Localizacao, ResponseShortLocalizacaoJson>();

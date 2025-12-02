@@ -34,6 +34,6 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
 
     public void Update(Chamado chamado)
     {
-        throw new NotImplementedException();
+        _dbContext.Chamados.Update(chamado);
     }
 }

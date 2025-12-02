@@ -141,13 +141,8 @@ namespace Ativos.Infrastructure.Migrations
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<string>("Nome_Soft")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("Tipo_Licenca")
+                        .HasColumnType("int");
 
                     b.HasKey("Id_Licenca");
 

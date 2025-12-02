@@ -51,7 +51,9 @@ internal class UsuariosRepository : IUsuariosWriteOnlyRepository, IUsuariosReadO
 
     public async Task<Usuario?> GetById(long idUsuario)
     {
-        return await _dbContext.Usuario.AsNoTracking().FirstOrDefaultAsync(usuario => usuario.Id_usuario == idUsuario);
+        return await _dbContext.Usuario
+            .Include(u => u.licencas)  // Carrega as licenças junto
+            .FirstOrDefaultAsync(usuario => usuario.Id_usuario == idUsuario);
     }
 
     public void Update(Usuario usuario)

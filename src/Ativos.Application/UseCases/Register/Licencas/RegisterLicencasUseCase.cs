@@ -3,20 +3,28 @@ using Ativos.Communication.responses.Register;
 using Ativos.Domain;
 using Ativos.Domain.Entities;
 using Ativos.Domain.Repositories.Licencas;
+using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ativos.Application.UseCases.Register.Licencas;
 
 public class RegisterLicencasUseCase : IRegisterLicencasUseCase
 {
     private readonly ILicencasWriteOnlyRepository _repository;
+    private readonly IUsuariosReadOnlyRepository _usuariosRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
     
-    public RegisterLicencasUseCase(ILicencasWriteOnlyRepository repository, IUnitOfWork unitOfWork, IMapper mapper)
+    public RegisterLicencasUseCase(
+        ILicencasWriteOnlyRepository repository,
+        IUsuariosReadOnlyRepository usuariosRepository,
+        IUnitOfWork unitOfWork,
+        IMapper mapper)
     {
         _repository = repository;
+        _usuariosRepository = usuariosRepository;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
@@ -27,7 +35,15 @@ public class RegisterLicencasUseCase : IRegisterLicencasUseCase
 
         var entity = _mapper.Map<Licenca>(request);
         
-        await _repository.Add(entity);
+        // Se houver usuário para vincular, usa o método específico
+        if (request.id_usuario > 0)
+        {
+            await _repository.AddWithUsuario(entity, request.id_usuario);
+        }
+        else
+        {
+            await _repository.Add(entity);
+        }
         
         await _unitOfWork.Commit();
         

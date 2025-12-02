@@ -71,10 +71,8 @@ internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRep
     {
         var result = await _dbContext.Ativos.FirstOrDefaultAsync(ativo => ativo.Id_ativo == id);
 
-        if(result is null)
-        {
-            return false;
-        }
+        if(result is null) return false;
+        
 
         _dbContext.Ativos.Remove(result);
 

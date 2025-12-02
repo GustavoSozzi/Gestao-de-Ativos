@@ -29,6 +29,33 @@ public class UsuariosController : ControllerBase
         return Created(string.Empty, response);
     }
     
+    //Vincular um usuario a uma licenca
+    [HttpPost("{id}/licencas")]
+    [ProducesResponseType(typeof(ResponseRegisterUsuariosLicencasJson), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> RegisterUsuariosLicencas([FromServices] IRegisterUsuariosLicencasUseCase useCase, [FromRoute] long id,
+        [FromBody] List<long> idLicencas)
+    {
+        var request = new RequestVincularLicencaJson
+        {
+            Id_Usuario = id,
+            Ids_Licencas = idLicencas
+        };
+    
+        var response = await useCase.Execute(request);
+        return Created(string.Empty, response);
+    }
+    
+    //Buscar licenças de um usuário
+    [HttpGet("{id}/licencas")]
+    [ProducesResponseType(typeof(List<long>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetUsuarioLicencas([FromServices] IGetUsuarioLicencasUseCase useCase, [FromRoute] long id)
+    {
+        var licencasIds = await useCase.Execute(id);
+        return Ok(licencasIds);
+    }
+    
     //GetAll Usuarios
     [HttpGet]
     [ProducesResponseType(typeof(ResponseRegisterUsuariosJson), StatusCodes.Status200OK)]

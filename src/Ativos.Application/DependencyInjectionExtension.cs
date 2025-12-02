@@ -4,6 +4,7 @@ using Ativos.Application.UseCases.Delete.Ativos;
 using Ativos.Application.UseCases.Delete.Usuarios;
 using Ativos.Application.UseCases.GetAll;
 using Ativos.Application.UseCases.GetAll.Chamados;
+using Ativos.Application.UseCases.GetAll.Licencas;
 using Ativos.Application.UseCases.GetAll.Usuarios;
 using Ativos.Application.UseCases.GetById;
 using Ativos.Application.UseCases.Login.DoLogin;
@@ -36,8 +37,10 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAtivoByIdUseCase, GetAtivoByIdUseCase>();
         services.AddScoped<IUpdateAtivosUseCase,  UpdateAtivosUseCase>();
         services.AddScoped<IRegisterUsuariosUseCase, RegisterUsuariosUseCase>();
+        services.AddScoped<IRegisterUsuariosLicencasUseCase, RegisterUsuariosLicencasUseCase>();
         services.AddScoped<IGetAllUsuarioUseCase, GetAllUsuarioUseCase>();
         services.AddScoped<IGetUsuarioByIdUseCase, GetUsuarioByIdUseCase>();
+        services.AddScoped<IGetUsuarioLicencasUseCase, GetUsuarioLicencasUseCase>();
         services.AddScoped<IUpdateUsuariosUseCase, UpdateUsuariosUseCase>();
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IRegisterChamadosUseCase, RegisterChamadosUseCase>();
@@ -45,6 +48,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUpdateChamadosUseCase, UpdateChamadosUseCase>();
         services.AddScoped<IRegisterContratosUseCase, RegisterContratosUseCase>();
         services.AddScoped<IRegisterLicencasUseCase, RegisterLicencasUseCase>();
+        services.AddScoped<IGetAllLicencasUseCase, GetAllLicencasUseCase>();
         services.AddScoped<IRegisterLocalizacaoUseCase, RegisterLocalizacaoUseCase>();
         services.AddScoped<IGetAllLocalizacaoUseCase, GetAllLocalizacoUseCase>();
         services.AddScoped<IDeleteAtivoUseCase, DeleteAtivoUseCase>();
