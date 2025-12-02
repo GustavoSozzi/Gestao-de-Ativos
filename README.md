@@ -418,6 +418,10 @@ Authorization: Bearer {seu-token-aqui}
 --- 
 
 ### 6. Modelo Relacional
+
+<img width="951" height="850" alt="Modelo relacional - correcao" src="https://github.com/user-attachments/assets/a223bee5-9d68-4636-b589-1fc118b4f0d4" />
+
+### 7. Modelo Entidade Relacionamento
 <img width="1103" height="540" alt="Modelo ER - Corrigido" src="https://github.com/user-attachments/assets/38d33c0a-b8cb-4e5a-926a-e1c57a2d7a7e" />
 
 ### 
