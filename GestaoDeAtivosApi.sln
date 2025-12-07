@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ativos.Infrastructure", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ativos.Exception", "src\Ativos.Exception\Ativos.Exception.csproj", "{CE283E83-8808-419E-A32B-54E8E3A9BB4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.tests", "tests\Validators.tests\Validators.tests.csproj", "{3B510828-A46C-40BB-916D-662AA6F78323}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonTestUtilities", "tests\CommonTestUtilities\CommonTestUtilities.csproj", "{3FCD448C-768A-4E60-B6A9-E6CC19CEAC83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +32,8 @@ Global
 		{DF87FCF1-0210-4B89-B5C1-4637EF647492} = {2E158249-1E6B-4676-B941-76C019F6C7ED}
 		{72F95206-2D23-40ED-BA2E-B2278540A70B} = {2E158249-1E6B-4676-B941-76C019F6C7ED}
 		{CE283E83-8808-419E-A32B-54E8E3A9BB4C} = {2E158249-1E6B-4676-B941-76C019F6C7ED}
+		{3B510828-A46C-40BB-916D-662AA6F78323} = {3ACA4521-FBD8-4C5E-A28F-08B430771659}
+		{3FCD448C-768A-4E60-B6A9-E6CC19CEAC83} = {3ACA4521-FBD8-4C5E-A28F-08B430771659}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0A922D7D-6932-4AF3-8BCA-E52ED12B8337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -54,5 +60,13 @@ Global
 		{CE283E83-8808-419E-A32B-54E8E3A9BB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE283E83-8808-419E-A32B-54E8E3A9BB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE283E83-8808-419E-A32B-54E8E3A9BB4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B510828-A46C-40BB-916D-662AA6F78323}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B510828-A46C-40BB-916D-662AA6F78323}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B510828-A46C-40BB-916D-662AA6F78323}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B510828-A46C-40BB-916D-662AA6F78323}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FCD448C-768A-4E60-B6A9-E6CC19CEAC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FCD448C-768A-4E60-B6A9-E6CC19CEAC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FCD448C-768A-4E60-B6A9-E6CC19CEAC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FCD448C-768A-4E60-B6A9-E6CC19CEAC83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
