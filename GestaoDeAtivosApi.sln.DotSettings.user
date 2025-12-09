@@ -68,6 +68,11 @@
       &lt;TestId&gt;xUnit::3B510828-A46C-40BB-916D-662AA6F78323::net8.0::Validators.tests.Ativos.RegisterUsuariosValidatorTests.Sucess&lt;/TestId&gt;
     &lt;/TestAncestor&gt;
     &lt;ProjectFile&gt;3B510828-A46C-40BB-916D-662AA6F78323/d:Ativos/d:Register/f:RegisterUsuariosValidatorTests.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;3B510828-A46C-40BB-916D-662AA6F78323/d:Users/f:RegisterUsuariosValidatorTests.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;3B510828-A46C-40BB-916D-662AA6F78323/d:Users/f:PasswordValidatorTest.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;61D1D1B2-03B0-4164-80CC-1D2D4321D46E/d:Users/d:Register/f:RegisterUsuariosUseCaseTest.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;61D1D1B2-03B0-4164-80CC-1D2D4321D46E/d:Ativos/d:Register/f:RegisterAtivosUseCaseTest.cs&lt;/ProjectFile&gt;
+    &lt;ProjectFile&gt;61D1D1B2-03B0-4164-80CC-1D2D4321D46E/d:Chamados/d:Register/f:RegisterChamadosUseCaseTest.cs&lt;/ProjectFile&gt;
   &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=src_002FAtivos_002EException_002FResourceErrorMessages/@EntryIndexedValue">True</s:Boolean>

@@ -13,6 +13,6 @@ public class RequestRegisterChamadosJsonBuilder
             .RuleFor(r => r.Titulo, faker => faker.Random.String(10))
             .RuleFor(r => r.Descricao, faker => faker.Lorem.Sentence(3, 10))
             .RuleFor(r => r.Status_Chamado, faker => faker.PickRandom<StatusChamado>())
-            .RuleFor(r => r.Id_Ativo, faker => faker.Random.Int(1, 10000));
+            .RuleFor(r => r.Id_Ativo, faker => faker.Random.Int(19, 24));
     }
 }

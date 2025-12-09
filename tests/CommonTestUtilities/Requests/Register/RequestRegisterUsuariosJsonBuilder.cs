@@ -19,13 +19,14 @@ public class RequestRegisterUsuariosJsonBuilder
     
     public static string PasswordCustom(Internet internet, int minLength, int maxLength) {
         var r = internet.Random;
+        var validSymbols = new[] { '!', '?', '*', '.' };
 
         var lowercase = r.Char('a', 'z').ToString(); //minusculos
         var uppercase = r.Char('A', 'Z').ToString(); //maiusculos
         var number    = r.Char('0', '9').ToString(); //numeros
-        var symbol    = r.Char('!', '/').ToString(); //simbolos
-        var padding   = r.String2(minLength - 4);
-        var padding2  = r.String2(r.Number(0, maxLength - minLength));  // random extra padding between min and max
+        var symbol    = r.ArrayElement(validSymbols).ToString(); //simbolos validos
+        var padding   = r.String2(minLength - 4, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
+        var padding2  = r.String2(r.Number(0, maxLength - minLength), "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
 
         var chars = (lowercase + uppercase + number + symbol + padding + padding2).ToArray();
         var shuffledChars = r.Shuffle(chars).ToArray();
