@@ -1,3 +1,4 @@
+using Ativos.Domain.Entities;
 using Ativos.Domain.Repositories.Usuarios;
 using Moq;
 
@@ -10,6 +11,18 @@ public class UserReadOnlyRepositoryBuilder
     public UserReadOnlyRepositoryBuilder()
     {
         _repository = new Mock<IUsuariosReadOnlyRepository>();
+    }
+
+    public void ExistActiveUserMatricula(int matricula)
+    {
+        _repository.Setup(userReadOnly => userReadOnly.ExistActiveUserMatricula(matricula)).ReturnsAsync(true);
+    }
+
+    public UserReadOnlyRepositoryBuilder GetUserByMatricula(Usuario usuario)
+    {
+        _repository.Setup(userRepository => userRepository.GetUserByMatricula(usuario.Matricula)).ReturnsAsync(usuario);
+
+        return this;
     }
 
     public IUsuariosReadOnlyRepository Build() => _repository.Object;

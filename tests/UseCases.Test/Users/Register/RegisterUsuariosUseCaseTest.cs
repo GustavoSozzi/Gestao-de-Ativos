@@ -1,4 +1,6 @@
 using Ativos.Application.UseCases.Register.Usuarios;
+using Ativos.Exception;
+using Ativos.Exception.ExceptionsBase;
 using CommonTestUtilities.Cryptography;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositories;
@@ -24,15 +26,49 @@ public class RegisterUsuariosUseCaseTest
         result.Token.Should().NotBeNullOrWhiteSpace();
     }
 
-    private RegisterUsuariosUseCase CreateUseCase()
+    [Fact]
+    public async Task Error_Name_Empty()
+    {
+        var request = RequestRegisterUsuariosJsonBuilder.Build();
+        request.P_nome = string.Empty;
+        
+        var useCase = CreateUseCase();
+        
+        var act = async () => await useCase.Execute(request);
+        
+        var result =  await act.Should().ThrowAsync<ErrorOnValidationException>();
+
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.NAME_REQUIRED)); //espera 1 erro especifico
+    }
+
+    [Fact]
+    public async Task Error_Matricula_Ja_Existe()
+    {
+        var request = RequestRegisterUsuariosJsonBuilder.Build();
+
+        var useCase = CreateUseCase(request.Matricula);
+        
+        var act = async () => await useCase.Execute(request);
+        
+        var result = await act.Should().ThrowAsync<ErrorOnValidationException>();
+
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("Matricula ja registrada"));
+    }
+
+    private RegisterUsuariosUseCase CreateUseCase(int? matricula = null)
     {
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var writeRepository = UserWriteOnlyRepositoryBuilder.Build();
         var passwordEncripter = PasswordEncripterBuilder.Build();
         var tokenGenerator = JwtTokenGeneratorBuilder.Build();
-        var readRepository = new UserReadOnlyRepositoryBuilder().Build();
+        var readRepository = new UserReadOnlyRepositoryBuilder();
 
-        return new RegisterUsuariosUseCase(writeRepository, tokenGenerator, readRepository, passwordEncripter, unitOfWork,  mapper);
+        if (matricula is int m)
+        {
+            readRepository.ExistActiveUserMatricula(m);
+        }
+
+        return new RegisterUsuariosUseCase(writeRepository, tokenGenerator, readRepository.Build(), passwordEncripter, unitOfWork,  mapper);
     }
 }
