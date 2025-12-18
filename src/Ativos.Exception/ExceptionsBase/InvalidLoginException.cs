@@ -4,7 +4,12 @@ namespace Ativos.Exception.ExceptionsBase;
 
 public class InvalidLoginException : AtivosException
 {
-    public InvalidLoginException() : base("Matricula ou senha invalida")
+    public InvalidLoginException() : base("Matricula ou senha invalidas")
+    {
+
+    }
+
+    public InvalidLoginException(string message) : base(message)
     {
 
     }

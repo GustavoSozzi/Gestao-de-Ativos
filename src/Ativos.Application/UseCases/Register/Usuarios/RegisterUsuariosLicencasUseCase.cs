@@ -3,6 +3,7 @@ using Ativos.Communication.responses.Register;
 using Ativos.Domain;
 using Ativos.Domain.Repositories.Licencas;
 using Ativos.Domain.Repositories.Usuarios;
+using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
 
 namespace Ativos.Application.UseCases.Register.Usuarios;
@@ -29,7 +30,7 @@ public class RegisterUsuariosLicencasUseCase : IRegisterUsuariosLicencasUseCase
     {
         var user = await _usuariosReadOnlyRepository.GetById(request.Id_Usuario);
 
-        if (user == null) throw new System.Exception("User not found");
+        if (user == null) { throw new InvalidLoginException("User not found");}
 
         foreach (var idLicenca in request.Ids_Licencas) //passando a lista como parametro no for
         {
@@ -37,7 +38,7 @@ public class RegisterUsuariosLicencasUseCase : IRegisterUsuariosLicencasUseCase
                 continue;
             
             var licenca = await _licencasReadOnlyRepository.GetById(idLicenca);
-            if (licenca == null) throw new System.Exception($"license {idLicenca} not found");
+            if (licenca == null) throw new InvalidLoginException($"license {idLicenca} not found");
             user.licencas.Add(licenca);
         }
         

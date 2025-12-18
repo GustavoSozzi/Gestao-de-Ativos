@@ -16,8 +16,8 @@ public class UserBuilder
             .RuleFor(r => r.Sobrenome, faker => faker.Name.LastName())
             .RuleFor(r => r.Cargo, faker => faker.Random.String(10))
             .RuleFor(r => r.Departamento, faker => faker.Random.String(10))
-            .RuleFor(r => r.Matricula, faker => faker.Random.Int(1, 100000))
-            .RuleFor(r => r.Password, (_, usuario) => passwordEncripter.Encrypt(usuario.Password))
+            .RuleFor(r => r.Matricula, _ => 5050)
+            .RuleFor(r => r.Password, _ => passwordEncripter.Encrypt("!Aa1password"))
             .RuleFor(r => r.UserIdentifier, _ => Guid.NewGuid());
 
         return user;

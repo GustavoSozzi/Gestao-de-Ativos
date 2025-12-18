@@ -29,7 +29,7 @@ public class DoLoginUseCase : IDoLoginUseCase
     public async Task<ResponseRegisterUsuariosJson> Execute(RequestLoginJson request)
     {
         var user = await _repository.GetUserByMatricula(request.Matricula);
-        if (user is null) { throw new InvalidLoginException();}
+        if (user is null) { throw new InvalidLoginException("User not found");}
         
         var passwordMatch= _passwordEncripter.Verify(request.Password, user.Password);
 

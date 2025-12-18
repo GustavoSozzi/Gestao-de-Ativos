@@ -38,7 +38,8 @@ public class AutoMapping : Profile
         CreateMap<Usuario, ResponseShortUsuarioJson>();
         CreateMap<Usuario, ResponseUsuarioJson>();
         CreateMap<Usuario, ResponseUsuariosJson>();
-        CreateMap<Usuario, ResponseRegisterUsuariosLicencasJson>();
+        CreateMap<Usuario, ResponseRegisterUsuariosLicencasJson>()
+            .ForMember(dest => dest.Ids_Licencas, opt => opt.MapFrom(src => src.licencas.Select(l => l.Id_Licenca).ToList()));
         CreateMap<Chamado, ResponseRegisterChamadosJson>();
         CreateMap<Chamado, ResponseChamadosJson>();
         CreateMap<Chamado, ResponseShortChamadoJson>();
