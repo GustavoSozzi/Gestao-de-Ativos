@@ -64,7 +64,7 @@ public class RegisterUsuariosUseCaseTest
         var tokenGenerator = JwtTokenGeneratorBuilder.Build();
         var readRepository = new UserReadOnlyRepositoryBuilder();
 
-        if (matricula is int m) {readRepository.ExistActiveUserMatricula(m);}
+        if (matricula is int m) {readRepository.ExistActiveUserMatricula(m);} //so sera mockado se houver matricula como parametro
 
         return new RegisterUsuariosUseCase(writeRepository, tokenGenerator, readRepository.Build(), passwordEncripter, unitOfWork,  mapper);
     }

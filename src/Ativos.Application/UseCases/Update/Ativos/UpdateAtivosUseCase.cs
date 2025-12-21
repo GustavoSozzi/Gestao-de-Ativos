@@ -26,10 +26,7 @@ public class UpdateAtivosUseCase : IUpdateAtivosUseCase
 
         var ativo = await _repository.GetById(id);
 
-        if(ativo is null)
-        {
-            throw new NotFoundException("NOT FOUND");
-        }
+        if(ativo is null) throw new NotFoundException("NOT FOUND");
 
         _mapper.Map(request, ativo);
 

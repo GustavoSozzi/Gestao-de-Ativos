@@ -14,10 +14,12 @@ public class ChamadosReadOnlyRepositoryBuilder
         _repository = new Mock<IAtivosReadOnlyRepository>();
     }
     
-    public ChamadosReadOnlyRepositoryBuilder WithGetByIdReturning(long id, Ativo ativo)
+    public ChamadosReadOnlyRepositoryBuilder GetById(Chamado? chamado)
     {
+        Ativo ativo = new Ativo();
+        
         _repository
-            .Setup(r => r.GetById(id))
+            .Setup(r => r.GetById(chamado.id_Ativo))
             .ReturnsAsync(ativo);
 
         return this;

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ativos.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1d57eb2bbcffa1aebc3e55fd0c0f08566b20d455")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4614751c23198e673c7497d3fa51648e8e0dad81")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ativos.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ativos.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

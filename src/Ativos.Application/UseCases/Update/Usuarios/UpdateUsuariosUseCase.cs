@@ -26,10 +26,8 @@ public class UpdateUsuariosUseCase : IUpdateUsuariosUseCase
 
         var usuario = await _repository.GetById(id);
 
-        if(usuario is null)
-        {
-            throw new NotFoundException("NOT FOUND");
-        }
+        if(usuario is null) throw new NotFoundException("NOT FOUND");
+        
 
         var currentPassword = usuario.Password;
         
