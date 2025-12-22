@@ -1,11 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "lH3etxyuREM=",
+  "dgSpecHash": "cId3qMwNaj4=",
   "success": true,
   "projectFilePath": "/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Application/Ativos.Application.csproj",
   "expectedPackageFiles": [
     "/Users/gustavosozzibom/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/closedxml/0.105.0/closedxml.0.105.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/closedxml.parser/2.0.0/closedxml.parser.2.0.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/documentformat.openxml/3.1.1/documentformat.openxml.3.1.1.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/documentformat.openxml.framework/3.1.1/documentformat.openxml.framework.3.1.1.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/excelnumberformat/1.1.0/excelnumberformat.1.1.0.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.entityframeworkcore/8.0.21/microsoft.entityframeworkcore.8.0.21.nupkg.sha512",
@@ -18,7 +23,10 @@
     "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.logging/8.0.1/microsoft.extensions.logging.8.0.1.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
-    "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/rbush.signed/4.0.0/rbush.signed.4.0.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/sixlabors.fonts/1.0.0/sixlabors.fonts.1.0.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/system.io.packaging/8.0.1/system.io.packaging.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }

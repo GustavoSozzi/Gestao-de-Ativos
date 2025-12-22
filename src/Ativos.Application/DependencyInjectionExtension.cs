@@ -14,6 +14,7 @@ using Ativos.Application.UseCases.Register.Contratos;
 using Ativos.Application.UseCases.Register.Licencas;
 using Ativos.Application.UseCases.Register.Localizacao;
 using Ativos.Application.UseCases.Register.Usuarios;
+using Ativos.Application.UseCases.Reports.Excel;
 using Ativos.Application.UseCases.Update;
 using Ativos.Application.UseCases.Update.Chamados;
 using Ativos.Application.UseCases.Update.Usuarios;
@@ -53,5 +54,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAllLocalizacaoUseCase, GetAllLocalizacoUseCase>();
         services.AddScoped<IDeleteAtivoUseCase, DeleteAtivoUseCase>();
         services.AddScoped<IDeleteUsuarioUseCase, DeleteUsuarioUseCase>();
+        services.AddScoped<IGenerateChamadosReportExcelUseCase, GenerateChamadosReportExcelUseCase>();
     }
 }

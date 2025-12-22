@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices.JavaScript;
 using Ativos.Domain.Entities;
 using Ativos.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;

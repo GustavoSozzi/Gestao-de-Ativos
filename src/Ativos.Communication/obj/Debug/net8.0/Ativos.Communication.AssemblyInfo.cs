@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ativos.Communication")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4614751c23198e673c7497d3fa51648e8e0dad81")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6c525669530c4d4202d35ebb68230915869247f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ativos.Communication")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ativos.Communication")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

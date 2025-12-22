@@ -31,6 +31,23 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
     {
         return await _dbContext.Chamados.AsNoTracking().FirstOrDefaultAsync(chamados => chamados.Id_Chamado == id);
     }
+    
+    public async Task<List<Chamado>> FilterByMonth(DateOnly date)
+    {
+        var startDate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
+        
+        var daysInMonth = DateTime.DaysInMonth(year: date.Year, month: date.Month);
+        var endDate = new DateTime(year: date.Year, month: date.Month, day: daysInMonth, hour: 23, minute: 59, second: 59);
+        
+        return await _dbContext
+            .Chamados
+            .AsNoTracking()
+            .Where(chamados => chamados.Data_Abertura >= startDate && chamados.Data_Abertura <= endDate)
+            .OrderBy(chamados => chamados.Data_Abertura)
+            .ThenBy(chamados => chamados.Titulo)
+            .ToListAsync();
+    }
+
 
     public void Update(Chamado chamado)
     {
