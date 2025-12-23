@@ -20,6 +20,18 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.21" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+      <PackageReference Include="PDFsharp-MigraDoc" Version="6.2.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="UseCases\Reports\Pdf\Fonts\Raleway-Black.ttf" />
+      <Resource Include="UseCases\Reports\Pdf\Fonts\Raleway-Black.ttf" />
+      <None Remove="UseCases\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
+      <Resource Include="UseCases\Reports\Pdf\Fonts\Raleway-Regular.ttf" />
+      <None Remove="UseCases\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
+      <Resource Include="UseCases\Reports\Pdf\Fonts\WorkSans-Black.ttf" />
+      <None Remove="UseCases\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
+      <Resource Include="UseCases\Reports\Pdf\Fonts\WorkSans-Regular.ttf" />
     </ItemGroup>
 
 </Project>

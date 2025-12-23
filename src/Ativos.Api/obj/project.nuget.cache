@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mhq6urn7CDI=",
+  "dgSpecHash": "S5NU0dAlWW8=",
   "success": true,
   "projectFilePath": "/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Api/Ativos.Api.csproj",
   "expectedPackageFiles": [
@@ -50,6 +50,8 @@
     "/Users/gustavosozzibom/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/mysqlconnector/2.3.5/mysqlconnector.2.3.5.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/pdfsharp/6.2.3/pdfsharp.6.2.3.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/pdfsharp-migradoc/6.2.3/pdfsharp-migradoc.6.2.3.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/pomelo.entityframeworkcore.mysql/8.0.3/pomelo.entityframeworkcore.mysql.8.0.3.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/rbush.signed/4.0.0/rbush.signed.4.0.0.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/sixlabors.fonts/1.0.0/sixlabors.fonts.1.0.0.nupkg.sha512",
@@ -70,6 +72,7 @@
     "/Users/gustavosozzibom/.nuget/packages/system.io.pipelines/6.0.3/system.io.pipelines.6.0.3.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/system.reflection.metadata/6.0.1/system.reflection.metadata.6.0.1.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/system.security.cryptography.pkcs/8.0.1/system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/system.text.encoding.codepages/6.0.0/system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/system.threading.channels/6.0.0/system.threading.channels.6.0.0.nupkg.sha512"
   ],

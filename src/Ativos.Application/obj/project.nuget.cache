@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cId3qMwNaj4=",
+  "dgSpecHash": "GURoUKSF0/U=",
   "success": true,
   "projectFilePath": "/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Application/Ativos.Application.csproj",
   "expectedPackageFiles": [
@@ -24,9 +24,12 @@
     "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.options/8.0.2/microsoft.extensions.options.8.0.2.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/pdfsharp/6.2.3/pdfsharp.6.2.3.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/pdfsharp-migradoc/6.2.3/pdfsharp-migradoc.6.2.3.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/rbush.signed/4.0.0/rbush.signed.4.0.0.nupkg.sha512",
     "/Users/gustavosozzibom/.nuget/packages/sixlabors.fonts/1.0.0/sixlabors.fonts.1.0.0.nupkg.sha512",
-    "/Users/gustavosozzibom/.nuget/packages/system.io.packaging/8.0.1/system.io.packaging.8.0.1.nupkg.sha512"
+    "/Users/gustavosozzibom/.nuget/packages/system.io.packaging/8.0.1/system.io.packaging.8.0.1.nupkg.sha512",
+    "/Users/gustavosozzibom/.nuget/packages/system.security.cryptography.pkcs/8.0.1/system.security.cryptography.pkcs.8.0.1.nupkg.sha512"
   ],
   "logs": []
 }
