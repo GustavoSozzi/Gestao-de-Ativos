@@ -9,6 +9,7 @@ using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Domain.Security.Cryptography;
 using Ativos.Domain.Security.Tokens;
 using Ativos.Infrastructure.DataAccess.Repositories;
+using Ativos.Infrastructure.Extensions;
 using Ativos.Infrastructure.Security.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,11 +21,12 @@ public static class DependencyInjectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        AddDbContext(services, configuration);
+        services.AddScoped<IPasswordEncripter, Security.BCrypt>();
+
         Addtoken(services, configuration);
         AddRepositories(services);
 
-        services.AddScoped<IPasswordEncripter, Security.BCrypt>();
+        if (!configuration.IsTestEnvironment()) AddDbContext(services, configuration);
     }
 
     private static void Addtoken(IServiceCollection services, IConfiguration configuration)
@@ -58,8 +60,7 @@ public static class DependencyInjectionExtension
     {
         var connectionString = configuration.GetConnectionString("Connection");
 
-        var version = new Version(9, 1, 0);
-        var serverVersion = new MySqlServerVersion(version);
+        var serverVersion = ServerVersion.AutoDetect(connectionString);
 
         services.AddDbContext<AtivosDbContext>(config => config.UseMySql(connectionString, serverVersion));
     }

@@ -37,13 +37,13 @@ public class DoLoginUseCaseTest
         var request =  RequestLoginJsonBuilder.Build();
         request.Matricula = -123;
         
-        var useCase = CreateUseCase(user);
+        var useCase = CreateUseCase(user, request.Matricula);
         
         var act = async () => await useCase.Execute(request);
 
         var result = await act.Should().ThrowAsync<InvalidLoginException>();
 
-        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("Matricula ou senha invalidas"));
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("User not found"));
     }
 
     [Fact]
@@ -62,14 +62,21 @@ public class DoLoginUseCaseTest
         result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("Matricula ou senha invalidas"));
     }
 
-    private DoLoginUseCase CreateUseCase(Usuario usuario)
+    private DoLoginUseCase CreateUseCase(Usuario usuario, long? matricula = null)
     {
         var passwordEncripter = PasswordEncripterBuilder.Build();
         var tokenGenerator = JwtTokenGeneratorBuilder.Build();
-        var readRepository = new UserReadOnlyRepositoryBuilder().GetUserByMatricula(usuario).Build(); //chamada encadeada
+        var readRepository = new UserReadOnlyRepositoryBuilder();
         var mapper = MapperBuilder.Build();
+
+        if (matricula != null)
+        {
+            var matriculaToUse = matricula ?? usuario.Matricula;
+            readRepository.GetUserByMatriculaNotFound(matriculaToUse);
+        }
+        else readRepository.GetUserByMatricula(usuario);
         
-        return new DoLoginUseCase(readRepository, passwordEncripter, tokenGenerator, mapper);
+        return new DoLoginUseCase(readRepository.Build(), passwordEncripter, tokenGenerator, mapper);
     }
 
     private DoLoginUseCase CreateUseCaseWithWrongPassword(Usuario usuario)

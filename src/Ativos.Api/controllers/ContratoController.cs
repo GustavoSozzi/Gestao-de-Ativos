@@ -17,7 +17,6 @@ public class ContratoController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterContratosJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [Route("register")]
     public async Task<IActionResult> RegisterContratos([FromServices] IRegisterContratosUseCase useCase, [FromBody] RequestContratosJson request)
     {
         var response = await useCase.Execute(request);

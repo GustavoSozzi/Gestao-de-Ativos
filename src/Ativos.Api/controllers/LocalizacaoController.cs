@@ -17,7 +17,6 @@ public class LocalizacaoController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterLocalizacaoJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [Route("register")]
     public async Task<IActionResult> RegisterLocalizacao([FromServices] IRegisterLocalizacaoUseCase useCase, [FromBody] RequestLocalizacaoJson request)
     {
         var response = await useCase.Execute(request);

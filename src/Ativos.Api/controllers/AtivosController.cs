@@ -13,14 +13,13 @@ namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class AtivosController : ControllerBase
 {
     //Ativos Controller
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterAtivosJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [Route("register")]
     public async Task<IActionResult> RegisterAtivos([FromServices] IRegisterAtivosUseCase useCase, [FromBody] RequestAtivosJson request)
     {
         var response = await useCase.Execute(request);

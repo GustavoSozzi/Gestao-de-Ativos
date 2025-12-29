@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Ativos.Domain.Entities;
 
 
-internal class AtivosDbContext : DbContext
+public class AtivosDbContext : DbContext
 {
     public AtivosDbContext(DbContextOptions options) : base(options) {}
     

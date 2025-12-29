@@ -55,7 +55,7 @@ public class RegisterUsuariosUseCaseTest
         result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("Matricula ja registrada"));
     }
 
-    private RegisterUsuariosUseCase CreateUseCase(int? matricula = null)
+    private RegisterUsuariosUseCase CreateUseCase(long? matricula = null)
     {
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
@@ -64,7 +64,7 @@ public class RegisterUsuariosUseCaseTest
         var tokenGenerator = JwtTokenGeneratorBuilder.Build();
         var readRepository = new UserReadOnlyRepositoryBuilder();
 
-        if (matricula is int m) {readRepository.ExistActiveUserMatricula(m);} //so sera mockado se houver matricula como parametro
+        if (matricula is long m) {readRepository.ExistActiveUserMatricula(m);} //so sera mockado se houver matricula como parametro
 
         return new RegisterUsuariosUseCase(writeRepository, tokenGenerator, readRepository.Build(), passwordEncripter, unitOfWork,  mapper);
     }

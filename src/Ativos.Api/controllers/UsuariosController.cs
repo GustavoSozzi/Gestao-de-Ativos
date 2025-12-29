@@ -14,7 +14,7 @@ namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class UsuariosController : ControllerBase
 
 {
@@ -22,7 +22,6 @@ public class UsuariosController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterUsuariosJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [Route("register")]
     public async Task<IActionResult> RegisterUsuarios([FromServices] IRegisterUsuariosUseCase useCase, [FromBody] RequestUsuariosJson request)
     {
         var response = await useCase.Execute(request);
@@ -36,11 +35,7 @@ public class UsuariosController : ControllerBase
     public async Task<IActionResult> RegisterUsuariosLicencas([FromServices] IRegisterUsuariosLicencasUseCase useCase, [FromRoute] long id,
         [FromBody] List<long> idLicencas)
     {
-        var request = new RequestVincularLicencaJson
-        {
-            Id_Usuario = id,
-            Ids_Licencas = idLicencas
-        };
+        var request = new RequestVincularLicencaJson { Id_Usuario = id, Ids_Licencas = idLicencas };
     
         var response = await useCase.Execute(request);
         return Created(string.Empty, response);

@@ -30,7 +30,7 @@ public class UpdateAtivosUseCaseTest
         var ativos = AtivosBuilder.Build();
         var request = RequestUpdateAtivosJsonBuilder.Build();
         
-        var useCase = CreateUseCase( ativos);
+        var useCase = CreateUseCase(ativos);
 
         var act = async () => await useCase.Execute(ativos.Id_ativo, request);
 

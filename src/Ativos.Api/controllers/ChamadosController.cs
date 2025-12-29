@@ -11,14 +11,13 @@ namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
+//[Authorize]
 public class ChamadosController : ControllerBase
 {
     //Chamados Controller
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterChamadosJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [Route("register")]
     public async Task<IActionResult> RegisterChamados([FromServices] IRegisterChamadosUseCase useCase, [FromBody] RequestChamadosJson request)
     {
         var response = await useCase.Execute(request);

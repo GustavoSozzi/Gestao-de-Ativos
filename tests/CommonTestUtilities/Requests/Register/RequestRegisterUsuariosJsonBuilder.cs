@@ -13,7 +13,7 @@ public class RequestRegisterUsuariosJsonBuilder
             .RuleFor(r => r.Sobrenome, faker => faker.Name.LastName())
             .RuleFor(r => r.Cargo, faker => faker.Random.String(10))
             .RuleFor(r => r.Departamento, faker => faker.Random.String(10))
-            .RuleFor(r => r.Matricula, _ => 5050)
+            .RuleFor(r => r.Matricula, faker => faker.Random.Int(1,100000))
             .RuleFor(r => r.Password, faker => PasswordCustom(faker.Internet, 8, 16));
     }
     

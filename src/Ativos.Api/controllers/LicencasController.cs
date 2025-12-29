@@ -17,7 +17,6 @@ public class LicencasController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(ResponseRegisterLicencasJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [Route("register")]
     public async Task<IActionResult> RegisterLicencas([FromServices] IRegisterLicencasUseCase useCase, [FromBody] RequestLicencasJson request)
     {
         var response = await useCase.Execute(request);

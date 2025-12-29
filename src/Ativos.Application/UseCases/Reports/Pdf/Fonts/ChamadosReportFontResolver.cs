@@ -30,6 +30,6 @@ public class ChamadosReportFontResolver : IFontResolver //criacao de fontes para
     {
         var assembly = Assembly.GetExecutingAssembly();
 
-        return assembly.GetManifestResourceStream($"Ativos.Application.UsCases.Reports.Pdf.Fonts.{faceName}.ttf");
+        return assembly.GetManifestResourceStream($"Ativos.Application.UseCases.Reports.Pdf.Fonts.{faceName}.ttf");
     }
 }

@@ -3,6 +3,7 @@ using Ativos.Api.Filters;
 using Ativos.Api.Middleware;
 using Ativos.Infrastructure;
 using Ativos.Application;
+using Ativos.Infrastructure.Extensions;
 using Ativos.Infrastructure.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -78,6 +79,7 @@ builder.Services.AddCors(options => {
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -96,7 +98,10 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-await MigrateDataBase();
+if(builder.Configuration.IsTestEnvironment() == false) //executa a migration se nao for ambiente de teste
+{
+    await MigrateDataBase();
+}
 
 app.Run();
 
@@ -106,3 +111,6 @@ async Task MigrateDataBase()
 
     await DataBaseMigration.MigrateDataBase(scope.ServiceProvider);
 }
+
+public partial class Program {}
+

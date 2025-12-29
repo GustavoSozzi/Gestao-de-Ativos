@@ -25,6 +25,13 @@ public class UserReadOnlyRepositoryBuilder
         return this;
     }
     
+    public UserReadOnlyRepositoryBuilder GetUserByMatriculaNotFound(long matricula)
+    {
+        _repository.Setup(userRepository => userRepository.GetUserByMatricula(matricula))
+            .ReturnsAsync((Usuario?)null);
+        return this;
+    }
+    
     public UserReadOnlyRepositoryBuilder GetById(Usuario usuario)
     {
         _repository.Setup(userRepository => userRepository.GetById(usuario.Id_usuario)).ReturnsAsync(usuario);

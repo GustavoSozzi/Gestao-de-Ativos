@@ -2,5 +2,5 @@ namespace Ativos.Communication.responses.Register;
 
 public class ResponseRegisterChamadosJson
 {
-    public int Id_Chamado { get; set; }
+    public long Id_Chamado { get; set; }
 }
