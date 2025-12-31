@@ -21,16 +21,21 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
     public async Task<List<Chamado>> GetAll(Usuario usuario)
     {
         var query = _dbContext.Chamados
-            .Include(a => a.Ativo)
+            .Include(c => c.Ativo)
+            .ThenInclude(a => a.localizacao) 
+            .Include(c => c.Ativo)
+            .ThenInclude(a => a.Usuario) 
             .Where(a => a.Ativo.id_usuario == usuario.Id_usuario)
             .AsQueryable();
 
         return await query.ToListAsync();
     }
 
-    public async Task<Chamado?> GetById(long id)
+    public async Task<Chamado?> GetById(Usuario usuario, long id)
     {
-        return await _dbContext.Chamados.AsNoTracking().FirstOrDefaultAsync(chamados => chamados.Id_Chamado == id);
+        return await _dbContext.Chamados.Include(c => c.Ativo)
+            .Where(a => a.Ativo.id_usuario == usuario.Id_usuario)
+            .AsNoTracking().FirstOrDefaultAsync(chamados => chamados.Id_Chamado == id);
     }
     
     public async Task<List<Chamado>> FilterByMonth(Usuario usuario, DateOnly date)
@@ -42,13 +47,14 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
         
         return await _dbContext
             .Chamados
+            .Include(c => c.Ativo)
             .AsNoTracking()
-            .Where(chamados => chamados.Data_Abertura >= startDate && chamados.Data_Abertura <= endDate)
+            .Where(chamados => chamados.Ativo.id_usuario == usuario.Id_usuario && chamados.Data_Abertura >= startDate && chamados.Data_Abertura <= endDate)
             .OrderBy(chamados => chamados.Data_Abertura)
             .ThenBy(chamados => chamados.Titulo)
             .ToListAsync();
     }
-
+    
 
     public void Update(Chamado chamado)
     {
