@@ -6,6 +6,7 @@ using Ativos.Domain.Repositories;
 using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Domain.Security.Cryptography;
 using Ativos.Domain.Security.Tokens;
+using Ativos.Domain.Services.LoggedUser;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
 using FluentValidation.Results;
@@ -19,13 +20,14 @@ public class RegisterUsuariosUseCase : IRegisterUsuariosUseCase
     private readonly IAccessTokenGenerator _tokenGenerator;
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ILoggedUser _loggedUser;
     private readonly IMapper _mapper;
 
     public RegisterUsuariosUseCase(IUsuariosWriteOnlyRepository repository,
         IAccessTokenGenerator tokenGenerator,
         IUsuariosReadOnlyRepository userReadOnlyRepository, 
         IPasswordEncripter passwordEncripter, 
-        IUnitOfWork unitOfWork, 
+        IUnitOfWork unitOfWork,
         IMapper mapper)
     {
         _repository = repository;
@@ -39,7 +41,7 @@ public class RegisterUsuariosUseCase : IRegisterUsuariosUseCase
     public async Task<ResponseRegisterUsuariosJson> Execute(RequestUsuariosJson request)
     {
         await ValidateUsuarios(request);
-
+        
         var entity = _mapper.Map<Usuario>(request);
         entity.Password = _passwordEncripter.Encrypt(request.Password); //criptografando a senha
         entity.UserIdentifier = Guid.NewGuid();

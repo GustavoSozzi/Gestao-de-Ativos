@@ -20,7 +20,7 @@ internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRep
         await _dbContext.Ativos.AddAsync(ativo);
     }
 
-    public async Task<List<Ativo>> GetAll(string? nome = null, string? modelo = null, string? tipo = null, 
+    public async Task<List<Ativo>> GetAll(Usuario usuario, string? nome = null, string? modelo = null, string? tipo = null, 
         long? codInventario = null, string? cidade = null, string? estado = null, 
         long? matriculaUsuario = null, string? nomeUsuario = null)
     {
@@ -54,13 +54,19 @@ internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRep
         if (!string.IsNullOrWhiteSpace(nomeUsuario))
             query = query.Where(a => a.Usuario != null && 
                 (a.Usuario.P_nome.Contains(nomeUsuario) || a.Usuario.Sobrenome.Contains(nomeUsuario)));
-
-        return await query.ToListAsync();
+    
+        
+        return await query.Where(ativo => ativo.id_usuario == usuario.Id_usuario).ToListAsync();
     }
 
-    public async Task<Ativo?> GetById(long id)
+    async Task<Ativo?>  IAtivosReadOnlyRepository.GetById(Usuario usuario, long id)
     {
-        return await _dbContext.Ativos.AsNoTracking().FirstOrDefaultAsync(ativo => ativo.Id_ativo == id);
+        return await _dbContext.Ativos.AsNoTracking().FirstOrDefaultAsync(ativo => ativo.Id_ativo == id && ativo.id_usuario == usuario.Id_usuario);
+    }
+
+    async Task<Ativo> IAtivosUpdateOnlyRepository.GetById(Usuario usuario, long id)
+    {
+        return await _dbContext.Ativos.AsNoTracking().FirstOrDefaultAsync(ativo => ativo.Id_ativo == id && ativo.id_usuario == usuario.Id_usuario);
     }
 
     public void Update(Ativo ativo)
@@ -68,15 +74,10 @@ internal class AtivosRepository : IAtivosReadOnlyRepository, IAtivosWriteOnlyRep
         _dbContext.Ativos.Update(ativo);
     }
     
-    public async Task<bool> Delete(long id)
+    public async Task Delete(long id)
     {
-        var result = await _dbContext.Ativos.FirstOrDefaultAsync(ativo => ativo.Id_ativo == id);
+        var result = await _dbContext.Ativos.FindAsync(id);
 
-        if(result is null) return false;
-        
-
-        _dbContext.Ativos.Remove(result);
-
-        return true;
+        _dbContext.Ativos.Remove(result!);
     }
 }

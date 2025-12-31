@@ -2,7 +2,7 @@ namespace Ativos.Domain.Entities;
 
 public interface IAtivosUpdateOnlyRepository
 {
-    Task<Ativo> GetById(long id);
+    Task<Ativo> GetById(Usuario usuario, long id);
     
     void Update(Ativo ativo);
 }

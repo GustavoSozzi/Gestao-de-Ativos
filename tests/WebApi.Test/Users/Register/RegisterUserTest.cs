@@ -6,6 +6,7 @@ using System.Text.Json;
 using Ativos.Exception;
 using CommonTestUtilities.Requests.Register;
 using FluentAssertions;
+using WebApi.Test.inlineData;
 
 namespace WebApi.Test.Users.Register;
 
@@ -38,13 +39,14 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory> //tes
         response.RootElement.GetProperty("token").GetString().Should().NotBeNullOrEmpty();
     }
 
-    [Fact]
-    public async Task Error_Empty_Name()
+    [Theory]
+    [ClassData(typeof(CultureInlineDataTest))]
+    public async Task Error_Empty_Name(string cultureInfo)
     {
         var request = RequestRegisterUsuariosJsonBuilder.Build();
         request.P_nome = string.Empty;
         
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("fr"));
+        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
         
         var result = await _httpClient.PostAsJsonAsync(METHOD, request);
         
@@ -56,7 +58,7 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory> //tes
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_REQUIRED", new CultureInfo("fr"));
+        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_REQUIRED", new CultureInfo(cultureInfo));
 
         errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
     }

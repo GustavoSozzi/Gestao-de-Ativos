@@ -1,5 +1,6 @@
 using Ativos.Communication.responses;
 using Ativos.Domain.Repositories;
+using Ativos.Domain.Services.LoggedUser;
 using AutoMapper;
 
 namespace Ativos.Application.UseCases.GetAll;
@@ -7,11 +8,13 @@ namespace Ativos.Application.UseCases.GetAll;
 public class GetAllAtivosUseCase : IGetAllAtivosUseCase
 {
     private readonly IAtivosReadOnlyRepository _repository;
+    private readonly ILoggedUser _loggedUser;
     private readonly IMapper _mapper;
 
-    public GetAllAtivosUseCase(IAtivosReadOnlyRepository repository, IMapper mapper)
+    public GetAllAtivosUseCase(IAtivosReadOnlyRepository repository, ILoggedUser loggedUser, IMapper mapper)
     {
         _repository = repository;
+        _loggedUser = loggedUser;
         _mapper = mapper;
     }
 
@@ -19,11 +22,10 @@ public class GetAllAtivosUseCase : IGetAllAtivosUseCase
         long? codInventario = null, string? cidade = null, string? estado = null, 
         long? matriculaUsuario = null, string? nomeUsuario = null)
     {
-        var result = await _repository.GetAll(nome, modelo, tipo, codInventario, cidade, estado, matriculaUsuario, nomeUsuario);
+        var loggedUser = await _loggedUser.Get();
+        
+        var result = await _repository.GetAll(loggedUser, nome, modelo, tipo, codInventario, cidade, estado, matriculaUsuario, nomeUsuario);
 
-        return new ResponseAtivosJson
-        {
-            Ativos = _mapper.Map<List<ResponseShortAtivoJson>>(result)
-        };
+        return new ResponseAtivosJson { Ativos = _mapper.Map<List<ResponseShortAtivoJson>>(result)};
     }
 }

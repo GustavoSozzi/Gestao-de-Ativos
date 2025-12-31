@@ -1,6 +1,7 @@
 using Ativos.Application.UseCases.Reports.Pdf.Colors;
 using Ativos.Application.UseCases.Reports.Pdf.Fonts;
 using Ativos.Domain.Repositories.Chamados;
+using Ativos.Domain.Services.LoggedUser;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
@@ -11,24 +12,29 @@ namespace Ativos.Application.UseCases.Reports.Pdf;
 public class GenerateChamadosReportPdfUseCase : IGenerateChamadosReportPdfUseCase
 {
     private readonly IChamadosReadOnlyRepository _repository;
+    
+    private readonly ILoggedUser _loggedUser;
     private const int HEIGHT_ROW_CALLED_TABLE = 25; 
     
-    public GenerateChamadosReportPdfUseCase(IChamadosReadOnlyRepository repository)
+    public GenerateChamadosReportPdfUseCase(IChamadosReadOnlyRepository repository, ILoggedUser loggedUser)
     {
         _repository = repository;
+        _loggedUser = loggedUser;
         
         GlobalFontSettings.FontResolver = new ChamadosReportFontResolver();
     }
 
     public async Task<byte[]> Execute(DateOnly month)
     {
-        var chamados =  await _repository.FilterByMonth(month);
+        var loggedUser = await _loggedUser.Get();
+        
+        var chamados =  await _repository.FilterByMonth(loggedUser, month);
         if (chamados.Count == 0) return [];
 
-        var document = CreateDocument(month);
+        var document = CreateDocument(loggedUser.P_nome, month);
         var page = CreatePage(document);
 
-        CreateHeaderWithProfilePhotoAndName(page);
+        CreateHeaderWithProfilePhotoAndName(loggedUser.P_nome, page);
         long total_open_calls = chamados.Count();
         CreateTotalCalledSection(page, month, total_open_calls);
 
@@ -80,12 +86,12 @@ public class GenerateChamadosReportPdfUseCase : IGenerateChamadosReportPdfUseCas
         return RenderDocument(document);
     }
 
-    private MigraDoc.DocumentObjectModel.Document CreateDocument(DateOnly month)
+    private MigraDoc.DocumentObjectModel.Document CreateDocument(string author, DateOnly month)
     {
         var document = new MigraDoc.DocumentObjectModel.Document();
         
         document.Info.Title = $"Chamados de {month:Y}";
-        document.Info.Author = "Gustavo Sozzi";
+        document.Info.Author = author;
 
         var style = document.Styles["Normal"];
         style!.Font.Name = FontHelper.RALEWAY_REGULAR;
@@ -107,7 +113,7 @@ public class GenerateChamadosReportPdfUseCase : IGenerateChamadosReportPdfUseCas
         return section;
     }
 
-    private void CreateHeaderWithProfilePhotoAndName(Section page)
+    private void CreateHeaderWithProfilePhotoAndName(string name, Section page)
     {
         var table = page.AddTable();
         table.AddColumn();
@@ -116,7 +122,7 @@ public class GenerateChamadosReportPdfUseCase : IGenerateChamadosReportPdfUseCas
         var row = table.AddRow();
         row.Cells[0].AddImage("/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/foto-tecnologia.png");
 
-        row.Cells[1].AddParagraph("Hey, Gustavo Sozzi Bom");
+        row.Cells[1].AddParagraph($"Hey, {name}");
         row.Cells[1].Format.Font = new Font { Name = FontHelper.RALEWAY_BLACK, Size = 16 };
         row.Cells[1].VerticalAlignment = VerticalAlignment.Center; //alinhando a coluna ao centro
     }

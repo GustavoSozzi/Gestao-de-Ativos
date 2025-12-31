@@ -8,9 +8,11 @@ using Ativos.Domain.Repositories.Localizacao;
 using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Domain.Security.Cryptography;
 using Ativos.Domain.Security.Tokens;
+using Ativos.Domain.Services.LoggedUser;
 using Ativos.Infrastructure.DataAccess.Repositories;
 using Ativos.Infrastructure.Extensions;
 using Ativos.Infrastructure.Security.Tokens;
+using Ativos.Infrastructure.Services.LoggedUser;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +24,7 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IPasswordEncripter, Security.BCrypt>();
+        services.AddScoped<ILoggedUser, LoggedUser>();
 
         Addtoken(services, configuration);
         AddRepositories(services);

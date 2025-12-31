@@ -1,4 +1,5 @@
 using Ativos.Domain.Repositories.Chamados;
+using Ativos.Domain.Services.LoggedUser;
 using ClosedXML.Excel;
 
 namespace Ativos.Application.UseCases.Reports.Excel;
@@ -6,6 +7,7 @@ namespace Ativos.Application.UseCases.Reports.Excel;
 public class GenerateChamadosReportExcelUseCase : IGenerateChamadosReportExcelUseCase
 {
     private readonly IChamadosReadOnlyRepository _repository;
+    private readonly ILoggedUser _loggedUser;
 
     public GenerateChamadosReportExcelUseCase(IChamadosReadOnlyRepository repository)
     {
@@ -14,14 +16,15 @@ public class GenerateChamadosReportExcelUseCase : IGenerateChamadosReportExcelUs
     
     public async Task<byte[]> Execute(DateOnly month)
     {
-
-        var chamados = await _repository.FilterByMonth(month);
+        var loggedUser = await _loggedUser.Get();
+        
+        var chamados = await _repository.FilterByMonth(loggedUser, month);
 
         if (chamados.Count == 0) return [];
         
         var workbook = new XLWorkbook();
 
-        workbook.Author = "Gustavo Sozzi Bom";
+        workbook.Author = loggedUser.P_nome;
         workbook.Style.Font.FontSize = 12;
         workbook.Style.Font.FontName = "Times New Roman";
         

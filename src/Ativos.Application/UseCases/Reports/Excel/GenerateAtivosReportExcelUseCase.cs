@@ -1,4 +1,5 @@
 using Ativos.Domain.Repositories;
+using Ativos.Domain.Services.LoggedUser;
 using ClosedXML.Excel;
 
 namespace Ativos.Application.UseCases.Reports.Excel;
@@ -6,15 +7,18 @@ namespace Ativos.Application.UseCases.Reports.Excel;
 public class GenerateAtivosReportExcelUseCase : IGenerateAtivosReportExcelUseCase
 {
     private readonly IAtivosReadOnlyRepository _repository;
+    private readonly ILoggedUser _loggedUser;
 
-    public GenerateAtivosReportExcelUseCase(IAtivosReadOnlyRepository repository)
+    public GenerateAtivosReportExcelUseCase(IAtivosReadOnlyRepository repository, ILoggedUser loggedUser)
     {
         _repository = repository;
     }
 
     public async Task<byte[]> Execute()
     {
-        var ativos = await _repository.GetAll();
+        var loggedUser = await _loggedUser.Get();
+        
+        var ativos = await _repository.GetAll(loggedUser);
 
         if (ativos.Count == 0) return [];
 

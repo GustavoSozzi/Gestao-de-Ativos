@@ -4,6 +4,7 @@ using Ativos.Domain;
 using Ativos.Domain.Entities;
 using Ativos.Domain.Repositories;
 using Ativos.Domain.Repositories.Chamados;
+using Ativos.Domain.Services.LoggedUser;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
 
@@ -13,20 +14,24 @@ public class RegisterChamadosUseCase : IRegisterChamadosUseCase
 {
     private readonly IChamadosWriteOnlyRepository _repository;
     private readonly IAtivosReadOnlyRepository _ativosReadOnlyRepository;
+    private readonly ILoggedUser _loggedUser;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public RegisterChamadosUseCase(IChamadosWriteOnlyRepository repository, IAtivosReadOnlyRepository ativosReadOnlyRepository, IUnitOfWork unitOfWork, IMapper mapper)
+    public RegisterChamadosUseCase(IChamadosWriteOnlyRepository repository, IAtivosReadOnlyRepository ativosReadOnlyRepository, ILoggedUser loggedUser, IUnitOfWork unitOfWork, IMapper mapper)
     {
         _repository = repository;
         _ativosReadOnlyRepository = ativosReadOnlyRepository;
+        _loggedUser = loggedUser;
         _unitOfWork = unitOfWork;
         _mapper = mapper;
     }
 
     public async Task<ResponseRegisterChamadosJson> Execute(RequestChamadosJson request) //registrando um chamado
     {
-        var ativoExists = await _ativosReadOnlyRepository.GetById(request.Id_Ativo);
+        var loggedUser = await _loggedUser.Get();
+        
+        var ativoExists = await _ativosReadOnlyRepository.GetById(loggedUser, request.Id_Ativo);
         
         if (ativoExists == null) {throw new NotFoundException("Ativo não encontrado");}
 

@@ -1,8 +1,10 @@
 using System.Text;
 using Ativos.Api.Filters;
 using Ativos.Api.Middleware;
+using Ativos.Api.Token;
 using Ativos.Infrastructure;
 using Ativos.Application;
+using Ativos.Domain.Security.Tokens;
 using Ativos.Infrastructure.Extensions;
 using Ativos.Infrastructure.Migrations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -49,6 +51,10 @@ builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)))
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
+
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+
+builder.Services.AddHttpContextAccessor();
 
 var signingKey = builder.Configuration.GetValue<string>("Settings:Jwt:SigningKey");
 

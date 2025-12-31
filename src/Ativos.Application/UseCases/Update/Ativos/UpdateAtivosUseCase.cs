@@ -1,6 +1,7 @@
 using Ativos.Communication.Requests;
 using Ativos.Domain;
 using Ativos.Domain.Entities;
+using Ativos.Domain.Services.LoggedUser;
 using Ativos.Exception;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
@@ -12,19 +13,23 @@ public class UpdateAtivosUseCase : IUpdateAtivosUseCase
     private readonly IMapper _mapper;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IAtivosUpdateOnlyRepository _repository;
+    private readonly ILoggedUser _loggedUser;
     
-    public UpdateAtivosUseCase(IMapper mapper, IUnitOfWork unitOfWork, IAtivosUpdateOnlyRepository repository)
+    public UpdateAtivosUseCase(IMapper mapper, IUnitOfWork unitOfWork, IAtivosUpdateOnlyRepository repository, ILoggedUser loggedUser)
     {
         _mapper = mapper;
         _unitOfWork = unitOfWork;
         _repository = repository;
+        _loggedUser = loggedUser;
     }
 
     public async Task Execute(long id, RequestAtivosJson request)
     {
         Validate(request);
 
-        var ativo = await _repository.GetById(id);
+        var loggedUser = await _loggedUser.Get();
+
+        var ativo = await _repository.GetById(loggedUser, id);
 
         if(ativo is null) throw new NotFoundException("NOT FOUND");
 

@@ -1,10 +1,15 @@
 using System.Net.Mime;
 using Ativos.Application.UseCases.Reports.Excel;
 using Ativos.Application.UseCases.Reports.Pdf;
+using Ativos.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ativos.Api.controllers;
 
+[Route("api/[controller]")]
+[ApiController]
+[Authorize(Roles = Roles.ADMIN)]
 public class ReportController : ControllerBase
 {
     [HttpGet("excel/chamados")]

@@ -18,10 +18,11 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
         await _dbContext.Chamados.AddAsync(chamado);
     }
     
-    public async Task<List<Chamado>> GetAll()
+    public async Task<List<Chamado>> GetAll(Usuario usuario)
     {
         var query = _dbContext.Chamados
             .Include(a => a.Ativo)
+            .Where(a => a.Ativo.id_usuario == usuario.Id_usuario)
             .AsQueryable();
 
         return await query.ToListAsync();
@@ -32,7 +33,7 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
         return await _dbContext.Chamados.AsNoTracking().FirstOrDefaultAsync(chamados => chamados.Id_Chamado == id);
     }
     
-    public async Task<List<Chamado>> FilterByMonth(DateOnly date)
+    public async Task<List<Chamado>> FilterByMonth(Usuario usuario, DateOnly date)
     {
         var startDate = new DateTime(year: date.Year, month: date.Month, day: 1).Date;
         

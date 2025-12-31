@@ -4,6 +4,6 @@ namespace Ativos.Domain.Repositories.Chamados;
 
 public interface IChamadosReadOnlyRepository
 {
-    Task<List<Entities.Chamado>> GetAll();
-    Task<List<Chamado>> FilterByMonth(DateOnly date);
+    Task<List<Entities.Chamado>> GetAll(Usuario usuario);
+    Task<List<Chamado>> FilterByMonth(Usuario usuario, DateOnly date);
 }

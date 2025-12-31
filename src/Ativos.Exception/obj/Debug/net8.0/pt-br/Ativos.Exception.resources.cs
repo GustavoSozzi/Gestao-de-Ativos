@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ativos.Exception")]
 [assembly: System.Reflection.AssemblyCopyrightAttribute(" ")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b081888390afd4a6a6d39c5d75afa099cf4ee57")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+06fdece5342e22eeff548b146c8bf404323bf1a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ativos.Exception")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ativos.Exception")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

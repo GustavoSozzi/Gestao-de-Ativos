@@ -14,7 +14,7 @@ namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-//[Authorize]
+[Authorize]
 public class UsuariosController : ControllerBase
 
 {
