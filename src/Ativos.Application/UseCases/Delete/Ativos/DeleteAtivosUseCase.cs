@@ -7,14 +7,14 @@ using AutoMapper;
 
 namespace Ativos.Application.UseCases.Delete.Ativos;
 
-public class DeleteAtivoUseCase : IDeleteAtivoUseCase
+public class DeleteAtivosUseCase : IDeleteAtivoUseCase
 {
     private readonly IAtivosWriteOnlyRepository _writeRepository;
     private readonly IAtivosReadOnlyRepository _readRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly ILoggedUser _loggedUser;
 
-    public DeleteAtivoUseCase(IAtivosWriteOnlyRepository writeRepository, IAtivosReadOnlyRepository readRepository, IUnitOfWork unitOfWork,  ILoggedUser loggedUser)
+    public DeleteAtivosUseCase(IAtivosWriteOnlyRepository writeRepository, IAtivosReadOnlyRepository readRepository, IUnitOfWork unitOfWork,  ILoggedUser loggedUser)
     {
         _writeRepository = writeRepository;
         _readRepository = readRepository;

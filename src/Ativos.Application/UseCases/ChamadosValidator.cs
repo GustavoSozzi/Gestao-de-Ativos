@@ -12,7 +12,7 @@ public class ChamadosValidator : AbstractValidator<RequestChamadosJson>
         RuleFor(chamados => chamados.Data_Abertura).Must(DateTimeIsValid).WithMessage("Data de abertura invalida");
         RuleFor(chamados => chamados.Titulo).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
         RuleFor(chamados => chamados.Descricao).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
-        RuleFor(chamados => chamados.Status_Chamado).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED).IsInEnum().WithMessage("Campo informado invalido");
+        RuleFor(chamados => chamados.Status_Chamado).IsInEnum().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
         RuleFor(chamados => chamados.Id_Ativo).GreaterThan(0).WithMessage("Ativo é obrigatório");
     }
 

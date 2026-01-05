@@ -2,6 +2,7 @@ using Ativos.Application.UseCases.Update.Chamados;
 using Ativos.Domain.Entities;
 using Ativos.Exception.ExceptionsBase;
 using CommonTestUtilities.Entities;
+using CommonTestUtilities.LoggedUser;
 using CommonTestUtilities.Mapper;
 using CommonTestUtilities.Repositories;
 using CommonTestUtilities.Requests.Register;
@@ -15,8 +16,10 @@ public class UpdateChamadosUseCaseTest
     public async Task Success()
     {
         var chamados = ChamadosBuilder.Build();
+        var loggedUser = UserBuilder.Build();
+        
         var request = RequestRegisterChamadosJsonBuilder.Build();
-        var useCase = CreateUseCase(chamados, chamados.Id_Chamado);
+        var useCase = CreateUseCase(loggedUser, chamados, chamados.Id_Chamado);
         
         await useCase.Execute(chamados.Id_Chamado, request);
 
@@ -30,9 +33,10 @@ public class UpdateChamadosUseCaseTest
     public async Task Error_Called_Not_Found()
     {
         var chamados = ChamadosBuilder.Build();
-        var request = RequestRegisterChamadosJsonBuilder.Build();
+        var loggedUser = UserBuilder.Build();
         
-        var useCase = CreateUseCase(chamados);
+        var request = RequestRegisterChamadosJsonBuilder.Build();
+        var useCase = CreateUseCase(loggedUser, chamados);
 
         var act = async () => await useCase.Execute(chamados.Id_Chamado, request);
 
@@ -42,15 +46,15 @@ public class UpdateChamadosUseCaseTest
     }
     
     
-    private UpdateChamadosUseCase CreateUseCase(Chamado chamado, long? Id_chamado = null)
+    private UpdateChamadosUseCase CreateUseCase(Usuario usuario, Chamado chamado, long? Id_chamado = null)
     {
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
+        var loggedUser = LoggedUserBuilder.Build(usuario);
         var updateRepository = new ChamadosUpdateOnlyRepositoryBuilder();
         
-        if (Id_chamado.HasValue) updateRepository.GetById(chamado);
+        if (Id_chamado.HasValue) updateRepository.GetById(usuario, chamado);
         
-        return new UpdateChamadosUseCase(mapper, unitOfWork, updateRepository.Build());
-
+        return new UpdateChamadosUseCase(mapper, unitOfWork, updateRepository.Build(), loggedUser);
     }
 }

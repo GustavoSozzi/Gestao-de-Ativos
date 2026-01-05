@@ -3,6 +3,7 @@ using Ativos.Communication.responses.Register;
 using Ativos.Domain;
 using Ativos.Domain.Repositories.Licencas;
 using Ativos.Domain.Repositories.Usuarios;
+using Ativos.Exception;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
 
@@ -30,11 +31,11 @@ public class RegisterUsuariosLicencasUseCase : IRegisterUsuariosLicencasUseCase
     {
         var user = await _usuariosReadOnlyRepository.GetById(request.Id_Usuario);
 
-        if (user == null) { throw new InvalidLoginException("User not found");}
+        if (user == null) { throw new InvalidLoginException(ResourceErrorMessages.MATRICULA_OU_SENHA_INVALIDA);}
 
-        foreach (var idLicenca in request.Ids_Licencas) //passando a lista como parametro no for
+        foreach (var idLicenca in request.Ids_Licencas) 
         {
-            if (user.licencas.Any(l => l.Id_Licenca == idLicenca)) //verifica se o usuario ja possui a licenca
+            if (user.licencas.Any(l => l.Id_Licenca == idLicenca)) 
                 continue;
             
             var licenca = await _licencasReadOnlyRepository.GetById(idLicenca);

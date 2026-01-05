@@ -43,7 +43,7 @@ public class DoLoginUseCaseTest
 
         var result = await act.Should().ThrowAsync<InvalidLoginException>();
 
-        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("User not found"));
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.MATRICULA_OU_SENHA_INVALIDA));
     }
 
     [Fact]
@@ -51,7 +51,7 @@ public class DoLoginUseCaseTest
     {
         var user = UserBuilder.Build();
         var request = RequestLoginJsonBuilder.Build();
-        request.Password = "senhaErrada123"; // Senha diferente
+        request.Password = "senhaErrada123";
         
         var useCase = CreateUseCaseWithWrongPassword(user);
         
@@ -59,7 +59,7 @@ public class DoLoginUseCaseTest
         
         var result = await act.Should().ThrowAsync<InvalidLoginException>();
         
-        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("Matricula ou senha invalidas"));
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.MATRICULA_OU_SENHA_INVALIDA));
     }
 
     private DoLoginUseCase CreateUseCase(Usuario usuario, long? matricula = null)

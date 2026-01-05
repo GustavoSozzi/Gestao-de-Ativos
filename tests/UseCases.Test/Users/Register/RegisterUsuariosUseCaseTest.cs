@@ -38,7 +38,7 @@ public class RegisterUsuariosUseCaseTest
         
         var result =  await act.Should().ThrowAsync<ErrorOnValidationException>();
 
-        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.NAME_REQUIRED)); //espera 1 erro especifico
+        result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains(ResourceErrorMessages.NAME_REQUIRED)); 
     }
 
     [Fact]

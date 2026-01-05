@@ -53,7 +53,7 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAllLicencasUseCase, GetAllLicencasUseCase>();
         services.AddScoped<IRegisterLocalizacaoUseCase, RegisterLocalizacaoUseCase>();
         services.AddScoped<IGetAllLocalizacaoUseCase, GetAllLocalizacoUseCase>();
-        services.AddScoped<IDeleteAtivoUseCase, DeleteAtivoUseCase>();
+        services.AddScoped<IDeleteAtivoUseCase, DeleteAtivosUseCase>();
         services.AddScoped<IDeleteUsuarioUseCase, DeleteUsuarioUseCase>();
         services.AddScoped<IGenerateChamadosReportExcelUseCase, GenerateChamadosReportExcelUseCase>();
         services.AddScoped<IGenerateAtivosReportExcelUseCase, GenerateAtivosReportExcelUseCase>();

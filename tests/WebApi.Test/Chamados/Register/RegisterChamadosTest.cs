@@ -7,17 +7,19 @@ using Microsoft.AspNetCore.Builder;
 
 namespace WebApi.Test.Chamados.Register;
 
-public class RegisterChamadosTest : IClassFixture<CustomWebApplicationFactory>
+public class RegisterChamadosTest : AtivosClassFixture
 {
     private const string METHOD = "api/Chamados";
     
     private readonly HttpClient _httpClient;
+    private readonly string _token;
     private readonly long _IdAtivo;
 
-    public RegisterChamadosTest(CustomWebApplicationFactory webApplicationFactory)
+    public RegisterChamadosTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
         _httpClient = webApplicationFactory.CreateClient();
-        _IdAtivo = webApplicationFactory.GetAtivo();
+        _token = webApplicationFactory.User_Team_Member.GetToken();
+        _IdAtivo = webApplicationFactory.Ativos.GetAtivoId();
     }
     
     [Fact]
@@ -26,7 +28,7 @@ public class RegisterChamadosTest : IClassFixture<CustomWebApplicationFactory>
         var request = RequestRegisterChamadosJsonBuilder.Build();
         request.Id_Ativo = _IdAtivo;
 
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, token : _token);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
 

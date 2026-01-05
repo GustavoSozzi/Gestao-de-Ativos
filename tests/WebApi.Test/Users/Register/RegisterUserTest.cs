@@ -1,7 +1,5 @@
 using System.Globalization;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 using System.Text.Json;
 using Ativos.Exception;
 using CommonTestUtilities.Requests.Register;
@@ -10,15 +8,14 @@ using WebApi.Test.inlineData;
 
 namespace WebApi.Test.Users.Register;
 
-public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory> //testes de integracao integracao
+public class RegisterUserTest : AtivosClassFixture
 {
     private const string METHOD = "api/Usuarios";
-    
-    private readonly HttpClient _httpClient;
+    private readonly string _token;
 
-    public RegisterUserTest(CustomWebApplicationFactory webApplicationFactory)
+    public RegisterUserTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _httpClient = webApplicationFactory.CreateClient();
+        _token = webApplicationFactory.User_Team_Member.GetToken();
     }
     
     [Fact]
@@ -26,7 +23,7 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory> //tes
     {
         var request = RequestRegisterUsuariosJsonBuilder.Build();
 
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri:METHOD, request:request, token: _token);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -41,14 +38,12 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory> //tes
 
     [Theory]
     [ClassData(typeof(CultureInlineDataTest))]
-    public async Task Error_Empty_Name(string cultureInfo)
+    public async Task Error_Empty_Name(string culture)
     {
         var request = RequestRegisterUsuariosJsonBuilder.Build();
         request.P_nome = string.Empty;
-        
-        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue(cultureInfo));
-        
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+
+        var result = await DoPost(requestUri:METHOD, request: request, token: _token, culture:culture);
         
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         
@@ -58,7 +53,8 @@ public class RegisterUserTest : IClassFixture<CustomWebApplicationFactory> //tes
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
 
-        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_REQUIRED", new CultureInfo(cultureInfo));
+        ResourceErrorMessages.Culture = new System.Globalization.CultureInfo(culture);
+        var expectedMessage = ResourceErrorMessages.NAME_REQUIRED;
 
         errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
     }

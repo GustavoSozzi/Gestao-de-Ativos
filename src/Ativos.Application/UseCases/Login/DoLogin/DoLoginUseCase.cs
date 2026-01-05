@@ -3,6 +3,7 @@ using Ativos.Communication.responses.Register;
 using Ativos.Domain.Repositories.Usuarios;
 using Ativos.Domain.Security.Cryptography;
 using Ativos.Domain.Security.Tokens;
+using Ativos.Exception;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;
 
@@ -29,11 +30,11 @@ public class DoLoginUseCase : IDoLoginUseCase
     public async Task<ResponseRegisterUsuariosJson> Execute(RequestLoginJson request)
     {
         var user = await _repository.GetUserByMatricula(request.Matricula);
-        if (user is null) { throw new InvalidLoginException("User not found");}
+        if (user is null) { throw new InvalidLoginException(ResourceErrorMessages.MATRICULA_OU_SENHA_INVALIDA);}
         
         var passwordMatch= _passwordEncripter.Verify(request.Password, user.Password);
 
-        if (!passwordMatch) {throw new InvalidLoginException();}
+        if (!passwordMatch) {throw new InvalidLoginException(ResourceErrorMessages.MATRICULA_OU_SENHA_INVALIDA);}
 
         var response = _mapper.Map<ResponseRegisterUsuariosJson>(user);
         response.Token = _accessTokenGenerator.Generate(user);

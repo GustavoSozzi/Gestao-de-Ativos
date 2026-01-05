@@ -87,7 +87,7 @@ public class RegisterChamadosValidatorTests
         var result = validator.Validate(request);
         //Assert
         result.IsValid.Should().BeFalse();
-        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage.Equals("Campo informado invalido"));
+        result.Errors.Should().ContainSingle().And.Contain(e => e.ErrorMessage.Equals(ResourceErrorMessages.FIELD_REQUIRED));
     }
     
     [Fact]

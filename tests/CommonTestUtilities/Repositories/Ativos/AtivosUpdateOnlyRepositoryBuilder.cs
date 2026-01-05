@@ -9,9 +9,9 @@ public class AtivosUpdateOnlyRepositoryBuilder
 
     public AtivosUpdateOnlyRepositoryBuilder() => _repository = new Mock<IAtivosUpdateOnlyRepository>();
 
-    public AtivosUpdateOnlyRepositoryBuilder GetById(Ativo? ativos)
+    public AtivosUpdateOnlyRepositoryBuilder GetById(Usuario usuario, Ativo? ativo)
     {
-        _repository.Setup(ativoRepository => ativoRepository.GetById(ativos.Id_ativo)).ReturnsAsync(ativos);
+        if(ativo is not null) _repository.Setup(ativoRepository => ativoRepository.GetById(usuario, ativo.Id_ativo)).ReturnsAsync(ativo);
 
         return this;
     }

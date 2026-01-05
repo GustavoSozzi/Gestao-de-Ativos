@@ -68,5 +68,11 @@ namespace Ativos.Exception {
                 return ResourceManager.GetString("INVALID_PASSWORD", resourceCulture);
             }
         }
+        
+        public static string MATRICULA_OU_SENHA_INVALIDA {
+            get {
+                return ResourceManager.GetString("MATRICULA_OU_SENHA_INVALIDA", resourceCulture);
+            }
+        }
     }
 }

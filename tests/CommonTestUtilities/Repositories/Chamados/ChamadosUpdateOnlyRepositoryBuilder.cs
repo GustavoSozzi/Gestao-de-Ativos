@@ -10,9 +10,9 @@ public class ChamadosUpdateOnlyRepositoryBuilder
     
     public ChamadosUpdateOnlyRepositoryBuilder() => _repository = new Mock<IChamadosUpdateOnlyRepository>();
     
-    public ChamadosUpdateOnlyRepositoryBuilder GetById(Chamado? chamado)
+    public ChamadosUpdateOnlyRepositoryBuilder GetById(Usuario usuario, Chamado? chamado)
     {
-        _repository.Setup(chamadoRepository => chamadoRepository.GetById(chamado.Id_Chamado)).ReturnsAsync(chamado);
+        _repository.Setup(chamadoRepository => chamadoRepository.GetById(usuario, chamado.Id_Chamado)).ReturnsAsync(chamado);
 
         return this;
     }

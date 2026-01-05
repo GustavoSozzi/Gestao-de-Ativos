@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Http.Json;
 using System.Text.Json;
 using Ativos.Exception;
 using CommonTestUtilities.Requests.Register;
@@ -7,15 +6,16 @@ using FluentAssertions;
 
 namespace WebApi.Test.Ativos.Register;
 
-public class RegisterAtivosTest : IClassFixture<CustomWebApplicationFactory>
+public class RegisterAtivosTest : AtivosClassFixture
 {
     private const string METHOD = "api/Ativos";
     
     private readonly HttpClient _httpClient;
+    private readonly string _token;
 
-    public RegisterAtivosTest(CustomWebApplicationFactory webApplicationFactory)
+    public RegisterAtivosTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _httpClient = webApplicationFactory.CreateClient();
+        _token = webApplicationFactory.User_Team_Member.GetToken();
     }
     
     [Fact]
@@ -23,7 +23,7 @@ public class RegisterAtivosTest : IClassFixture<CustomWebApplicationFactory>
     {
         var request = RequestRegisterAtivosJsonBuilder.Build();
 
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, token : _token);
 
         result.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -42,7 +42,7 @@ public class RegisterAtivosTest : IClassFixture<CustomWebApplicationFactory>
         var request = RequestRegisterAtivosJsonBuilder.Build();
         request.Nome = string.Empty;
         
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, token: _token);
         
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         
@@ -61,8 +61,7 @@ public class RegisterAtivosTest : IClassFixture<CustomWebApplicationFactory>
         var request = RequestRegisterAtivosJsonBuilder.Build();
         request.Modelo = string.Empty;
         
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
-        
+        var result = await DoPost(requestUri: METHOD, request: request, token: _token);
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         
         var body = await result.Content.ReadAsStreamAsync();
@@ -80,7 +79,7 @@ public class RegisterAtivosTest : IClassFixture<CustomWebApplicationFactory>
         var request = RequestRegisterAtivosJsonBuilder.Build();
         request.SerialNumber = string.Empty;
         
-        var result = await _httpClient.PostAsJsonAsync(METHOD, request);
+        var result = await DoPost(requestUri: METHOD, request: request, token: _token);
         
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         
