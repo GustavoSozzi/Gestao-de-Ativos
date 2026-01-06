@@ -12,5 +12,6 @@ public class ChamadosIdentityManager
     }
     
     public long GetChamado() => _chamado.id_Ativo;
+    public long GetChamadoId() => _chamado.Id_Chamado;
 
 }

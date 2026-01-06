@@ -43,7 +43,7 @@ public class RegisterUserTest : AtivosClassFixture
         var request = RequestRegisterUsuariosJsonBuilder.Build();
         request.P_nome = string.Empty;
 
-        var result = await DoPost(requestUri:METHOD, request: request, token: _token, culture:culture);
+        var result = await DoPost(requestUri:METHOD, request: request, token: _token, culture: culture);
         
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         
@@ -52,9 +52,8 @@ public class RegisterUserTest : AtivosClassFixture
         var response = await JsonDocument.ParseAsync(body);
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
-
-        ResourceErrorMessages.Culture = new System.Globalization.CultureInfo(culture);
-        var expectedMessage = ResourceErrorMessages.NAME_REQUIRED;
+        
+        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_REQUIRED", new System.Globalization.CultureInfo(culture));
 
         errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
     }

@@ -19,4 +19,5 @@ public class UserIdentityManager
     public long GetMatricula() => _user.Matricula;
     public string GetToken() => _token;
     public string GetPassword() => _password;
+    public long GetUsuarioId() => _user.Id_usuario;
 }

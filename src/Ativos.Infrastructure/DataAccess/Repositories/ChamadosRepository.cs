@@ -18,7 +18,14 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
         await _dbContext.Chamados.AddAsync(chamado);
     }
     
-    public async Task<List<Chamado>> GetAll(Usuario usuario)
+    public async Task<List<Chamado>> GetAll(Usuario usuario, string? nome = null, 
+        string? modelo = null, 
+        string? tipo = null, 
+        long? codInventario = null, 
+        string? cidade = null, 
+        string? estado = null, 
+        long? matriculaUsuario = null, 
+        string? nomeUsuario = null)
     {
         var query = _dbContext.Chamados
             .Include(c => c.Ativo)

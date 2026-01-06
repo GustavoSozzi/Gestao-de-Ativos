@@ -3,6 +3,7 @@ using System.Text.Json;
 using Ativos.Exception;
 using CommonTestUtilities.Requests.Register;
 using FluentAssertions;
+using WebApi.Test.inlineData;
 
 namespace WebApi.Test.Ativos.Register;
 
@@ -55,13 +56,14 @@ public class RegisterAtivosTest : AtivosClassFixture
         errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(ResourceErrorMessages.NAME_REQUIRED));
     }
     
-    [Fact]
-    public async Task Error_Empty_Model()
+    [Theory]
+    [ClassData(typeof(CultureInlineDataTest))]
+    public async Task Error_Empty_Model(string culture)
     {
         var request = RequestRegisterAtivosJsonBuilder.Build();
         request.Modelo = string.Empty;
         
-        var result = await DoPost(requestUri: METHOD, request: request, token: _token);
+        var result = await DoPost(requestUri: METHOD, request: request, token: _token, culture: culture);
         result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         
         var body = await result.Content.ReadAsStreamAsync();
@@ -69,8 +71,10 @@ public class RegisterAtivosTest : AtivosClassFixture
         var response = await JsonDocument.ParseAsync(body);
 
         var errors = response.RootElement.GetProperty("errorMessages").EnumerateArray();
+        
+        var expectedMessage = ResourceErrorMessages.ResourceManager.GetString("FIELD_REQUIRED", new System.Globalization.CultureInfo(culture));
 
-        errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(ResourceErrorMessages.FIELD_REQUIRED));
+        errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expectedMessage));
     }
     
     [Fact]

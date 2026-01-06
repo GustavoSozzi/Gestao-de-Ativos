@@ -37,7 +37,7 @@ public class AtivosBuilder
             .RuleFor(r => r.Tipo, faker => faker.Lorem.Text())
             .RuleFor(r => r.id_usuario, _ => usuario.Id_usuario);
 
-        return ativos.Generate(); // ✅ Adicionar .Generate() para criar o objeto
+        return ativos.Generate();
 
     }
 }

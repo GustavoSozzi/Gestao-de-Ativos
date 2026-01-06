@@ -15,13 +15,20 @@ public class UpdateUsuarioUseCaseTest
     [Fact]
     public async Task Success()
     {
-        var usuario = UserBuilder.Build();
+        var loggedUser = UserBuilder.Build();
         var request = RequestRegisterUsuariosJsonBuilder.Build();
-        var useCase = CreateUseCase(usuario, usuario.Id_usuario);
+        
+        var useCase = CreateUseCase(loggedUser, loggedUser.Id_usuario);
+        
+        var act = async () => await useCase.Execute(loggedUser.Id_usuario, request);
 
-        await useCase.Execute(usuario.Id_usuario, request); //nao lancou excecao = passou no teste
+        await act.Should().NotThrowAsync();
 
-        usuario.P_nome.Should().Be(request.P_nome);
+        loggedUser.P_nome.Should().Be(request.P_nome);
+        loggedUser.Sobrenome.Should().Be(request.Sobrenome);
+        loggedUser.Cargo.Should().Be(request.Cargo);
+        loggedUser.Departamento.Should().Be(request.Departamento);
+        loggedUser.Matricula.Should().Be(request.Matricula);
     }
     
     [Fact]

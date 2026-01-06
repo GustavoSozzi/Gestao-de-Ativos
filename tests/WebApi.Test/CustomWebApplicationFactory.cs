@@ -44,8 +44,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     {
         var user = AddUsersTeamMember(dbContext, passwordEncripter, accessTokenGenerator);
         var localizacao = AddLocalizacao(dbContext);
-        AddAtivos(dbContext, user, localizacao);
-        AddChamados(dbContext);
+        var ativo = AddAtivos(dbContext, user, localizacao);
+        AddChamados(dbContext, ativo);
         
         dbContext.SaveChanges();
     }
@@ -74,7 +74,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         return localizacao;
     }
 
-    private void AddAtivos(AtivosDbContext dbContext, Usuario usuario, Localizacao localizacao)
+    private Ativo AddAtivos(AtivosDbContext dbContext, Usuario usuario, Localizacao localizacao)
     {
         var ativo = AtivosBuilder.Build(usuario);
         ativo.id_localizacao = localizacao.Id_Localizacao;
@@ -82,14 +82,14 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         dbContext.Ativos.Add(ativo);
 
         Ativos = new AtivosIdentityManager(ativo);
+
+        return ativo;
     }
 
-    private void AddChamados(AtivosDbContext dbContext)
+    private void AddChamados(AtivosDbContext dbContext, Ativo ativo)
     {
-        var chamado = ChamadosBuilder.Build();
-
+        var chamado = ChamadosBuilder.Build(ativo);
         dbContext.Chamados.Add(chamado);
-
         Chamados =  new ChamadosIdentityManager(chamado);
     }
 }
