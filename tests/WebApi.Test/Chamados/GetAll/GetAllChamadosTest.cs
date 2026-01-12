@@ -12,7 +12,7 @@ public class GetAllChamadosTest : AtivosClassFixture
 
     public GetAllChamadosTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _token = webApplicationFactory.User_Team_Member.GetToken();
+        _token = webApplicationFactory.User_Admin.GetToken();
     }
 
     [Fact]

@@ -69,7 +69,7 @@ public class RegisterUsuariosLicencaUseCaseTest
         var userReadRepository = new UserReadOnlyRepositoryBuilder();
         var licenceReadRepository = new LicenseReadOnlyRepositoryBuilder();
 
-        if (id_usuario != null) userReadRepository.GetById(usuario);
+        if (id_usuario != null) userReadRepository.GetById(usuario, id_usuario);
         if (id_licenca != null) licenceReadRepository.GetById(licenca);
         
         return new RegisterUsuariosLicencasUseCase(userReadRepository.Build(), licenceReadRepository.Build(), unitOfWork, mapper);

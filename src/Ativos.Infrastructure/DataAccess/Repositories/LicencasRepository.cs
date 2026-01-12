@@ -32,7 +32,7 @@ internal class LicencasRepository : ILicencasWriteOnlyRepository, ILicencasReadO
         await _dbContext.Licencas.AddAsync(licenca);
     }
 
-    public async Task<List<Licenca>> GetAll()
+    public async Task<List<Licenca>> GetAll(Usuario usuario)
     {
         return await _dbContext.Licencas.ToListAsync();
     }

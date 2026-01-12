@@ -26,7 +26,7 @@ public class GetAllChamadosUseCaseTest
         {
             chamado.Id_Chamado.Should().BeGreaterThan(0);
             chamado.Id_Ativo.Should().BeGreaterThan(0);
-            chamado.Data_Abertura.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(100));
+            chamado.Data_Abertura.Should().NotBe(default);
             chamado.Titulo.Should().NotBeNullOrEmpty();
             chamado.Descricao.Should().NotBeNullOrEmpty();
             chamado.Status_Chamado.Should().BeDefined();

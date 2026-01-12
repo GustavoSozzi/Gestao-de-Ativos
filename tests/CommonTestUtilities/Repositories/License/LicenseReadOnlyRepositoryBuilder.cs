@@ -20,6 +20,13 @@ public class LicenseReadOnlyRepositoryBuilder
 
         return this;
     }
+    
+    public LicenseReadOnlyRepositoryBuilder GetAll(Usuario usuario, List<Licenca> licencas)
+    {
+        _repository.Setup(licenceRepository => licenceRepository.GetAll(usuario)).ReturnsAsync(licencas);
+
+        return this;
+    }
 
     public ILicencasReadOnlyRepository Build() => _repository.Object;
 }

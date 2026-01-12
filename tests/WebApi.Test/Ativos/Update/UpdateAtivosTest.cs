@@ -18,7 +18,7 @@ public class UpdateAtivosTest : AtivosClassFixture
     public UpdateAtivosTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
         _token = webApplicationFactory.User_Team_Member.GetToken();
-        _ativoId = webApplicationFactory.Ativos.GetAtivoId();
+        _ativoId = webApplicationFactory.Ativos_MemberTeam.GetAtivoId();
     }
 
     [Fact]

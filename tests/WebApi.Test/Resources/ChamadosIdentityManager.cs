@@ -10,8 +10,7 @@ public class ChamadosIdentityManager
     {
         _chamado = chamado;
     }
-    
-    public long GetChamado() => _chamado.id_Ativo;
     public long GetChamadoId() => _chamado.Id_Chamado;
 
+    public DateTime GetDate() => _chamado.Data_Abertura;
 }

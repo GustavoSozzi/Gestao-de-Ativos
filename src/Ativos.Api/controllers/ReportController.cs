@@ -15,7 +15,7 @@ public class ReportController : ControllerBase
     [HttpGet("excel/chamados")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    public async Task<IActionResult> GetExcel([FromServices] IGenerateChamadosReportExcelUseCase useCase, [FromHeader] DateOnly month)
+    public async Task<IActionResult> GetExcel([FromServices] IGenerateChamadosReportExcelUseCase useCase, [FromQuery] DateOnly month)
     {
         byte[] file = await useCase.Execute(month);
         

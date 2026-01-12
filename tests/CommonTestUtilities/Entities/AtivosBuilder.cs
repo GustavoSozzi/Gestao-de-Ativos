@@ -5,7 +5,6 @@ namespace CommonTestUtilities.Entities;
 
 public class AtivosBuilder
 {
-
     public static List<Ativo> Collection(Usuario usuario, uint count = 2)
     {
         var list = new List<Ativo>();
@@ -23,7 +22,6 @@ public class AtivosBuilder
 
         return list;
     }
-    
     
     public static Ativo Build(Usuario usuario)
     {

@@ -11,15 +11,13 @@ public class RegisterChamadosTest : AtivosClassFixture
 {
     private const string METHOD = "api/Chamados";
     
-    private readonly HttpClient _httpClient;
     private readonly string _token;
     private readonly long _IdAtivo;
 
     public RegisterChamadosTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
-        _httpClient = webApplicationFactory.CreateClient();
         _token = webApplicationFactory.User_Team_Member.GetToken();
-        _IdAtivo = webApplicationFactory.Ativos.GetAtivoId();
+        _IdAtivo = webApplicationFactory.Ativos_MemberTeam.GetAtivoId();
     }
     
     [Fact]
@@ -36,6 +34,6 @@ public class RegisterChamadosTest : AtivosClassFixture
 
         var response = await JsonDocument.ParseAsync(body);
         
-        response.RootElement.GetProperty("id_Chamado").GetInt32().Should().BeGreaterThan(0);
+        response.RootElement.GetProperty("id_Chamado").GetInt64().Should().BeGreaterThan(0);
     }
 }

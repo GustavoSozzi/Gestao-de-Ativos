@@ -41,7 +41,6 @@ public class GetAtivoByIdUseCaseTest
         var result = await act.Should().ThrowAsync<NotFoundException>();
 
         result.Where(ex => ex.GetErrors().Count == 1 && ex.GetErrors().Contains("NOT FOUND"));
-
     }
 
     private GetAtivoByIdUseCase CreateUseCase(Usuario usuario, Ativo? ativo = null)

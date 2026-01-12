@@ -9,9 +9,10 @@ public class GenerateChamadosReportExcelUseCase : IGenerateChamadosReportExcelUs
     private readonly IChamadosReadOnlyRepository _repository;
     private readonly ILoggedUser _loggedUser;
 
-    public GenerateChamadosReportExcelUseCase(IChamadosReadOnlyRepository repository)
+    public GenerateChamadosReportExcelUseCase(IChamadosReadOnlyRepository repository, ILoggedUser loggedUser)
     {
         _repository = repository;
+        _loggedUser = loggedUser;
     }
     
     public async Task<byte[]> Execute(DateOnly month)

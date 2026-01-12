@@ -1,4 +1,5 @@
 using Ativos.Domain.Entities;
+using Ativos.Domain.Enums;
 using CommonTestUtilities.Cryptography;
 using Bogus;
 
@@ -6,7 +7,7 @@ namespace CommonTestUtilities.Entities;
 
 public class UserBuilder
 {
-    public static Usuario Build()
+    public static Usuario Build(string role = Roles.TEAM_MEMBER)
     {
         var passwordEncripter = PasswordEncripterBuilder.Build();
 
@@ -18,7 +19,8 @@ public class UserBuilder
             .RuleFor(r => r.Departamento, faker => faker.Random.String(10))
             .RuleFor(r => r.Matricula, _ => 5050)
             .RuleFor(r => r.Password, _ => passwordEncripter.Encrypt("!Aa1password"))
-            .RuleFor(r => r.UserIdentifier, _ => Guid.NewGuid());
+            .RuleFor(r => r.UserIdentifier, _ => Guid.NewGuid())
+            .RuleFor(u => u.Role, _ => role);
 
         return user;
     }

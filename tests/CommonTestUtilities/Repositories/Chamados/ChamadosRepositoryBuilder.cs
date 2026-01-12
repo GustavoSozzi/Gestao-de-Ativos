@@ -29,7 +29,13 @@ public class ChamadosRepositoryBuilder
 
         return this;
     }
-    
+
+    public ChamadosRepositoryBuilder FilterByMonth(Usuario usuario, List<Chamado> chamados)
+    {
+        _repository.Setup(repository => repository.FilterByMonth(usuario, It.IsAny<DateOnly>())).ReturnsAsync(chamados);
+
+        return this;
+    }
     public IChamadosReadOnlyRepository Build() => _repository.Object;
 
 }

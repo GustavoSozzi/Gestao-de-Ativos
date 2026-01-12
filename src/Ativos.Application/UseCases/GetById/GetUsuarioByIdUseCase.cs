@@ -1,5 +1,6 @@
 using Ativos.Communication.responses.Usuarios;
 using Ativos.Domain.Repositories.Usuarios;
+using Ativos.Domain.Services.LoggedUser;
 using Ativos.Exception;
 using Ativos.Exception.ExceptionsBase;
 using AutoMapper;

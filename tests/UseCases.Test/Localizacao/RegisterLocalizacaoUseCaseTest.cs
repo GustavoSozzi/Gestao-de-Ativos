@@ -20,6 +20,8 @@ public class RegisterLocalizacaoUseCaseTest
         var result = await useCase.Execute(request);
         
         result.Should().NotBeNull();
+        result.Cidade.Should().Be(request.Cidade);
+        result.Estado.Should().Be(request.Estado);
     }
 
     [Fact]

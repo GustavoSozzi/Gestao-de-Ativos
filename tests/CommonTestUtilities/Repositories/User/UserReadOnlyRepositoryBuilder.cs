@@ -32,9 +32,9 @@ public class UserReadOnlyRepositoryBuilder
         return this;
     }
     
-    public UserReadOnlyRepositoryBuilder GetById(Usuario usuario)
+    public UserReadOnlyRepositoryBuilder GetById(Usuario usuario, long? id_usuario)
     {
-        _repository.Setup(userRepository => userRepository.GetById(usuario.Id_usuario)).ReturnsAsync(usuario);
+        if(id_usuario is not null ) _repository.Setup(userRepository => userRepository.GetById(usuario.Id_usuario)).ReturnsAsync(usuario);
 
         return this;
     }

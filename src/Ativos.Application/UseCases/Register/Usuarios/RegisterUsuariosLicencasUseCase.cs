@@ -11,7 +11,6 @@ namespace Ativos.Application.UseCases.Register.Usuarios;
 
 public class RegisterUsuariosLicencasUseCase : IRegisterUsuariosLicencasUseCase
 {
-    
     private readonly IUsuariosReadOnlyRepository _usuariosReadOnlyRepository;
     private readonly ILicencasReadOnlyRepository _licencasReadOnlyRepository;
     private readonly IUnitOfWork _unitOfWork;
