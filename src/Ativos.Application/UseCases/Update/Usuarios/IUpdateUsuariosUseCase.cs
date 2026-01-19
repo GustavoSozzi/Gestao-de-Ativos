@@ -4,5 +4,5 @@ namespace Ativos.Application.UseCases.Update.Usuarios;
 
 public interface IUpdateUsuariosUseCase
 {
-    Task Execute(long id, RequestUsuariosJson request);
+    Task Execute(RequestUpdateUserJson request);
 }

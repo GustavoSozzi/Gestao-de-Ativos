@@ -19,6 +19,8 @@ using Ativos.Application.UseCases.Reports.Pdf;
 using Ativos.Application.UseCases.Update;
 using Ativos.Application.UseCases.Update.Chamados;
 using Ativos.Application.UseCases.Update.Usuarios;
+using Ativos.Application.UseCases.Users.ChangePassword;
+using Ativos.Application.UseCases.Users.Profile;
 
 namespace Ativos.Application;
 
@@ -43,6 +45,8 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetAllUsuarioUseCase, GetAllUsuarioUseCase>();
         services.AddScoped<IGetUsuarioByIdUseCase, GetUsuarioByIdUseCase>();
         services.AddScoped<IGetUsuarioLicencasUseCase, GetUsuarioLicencasUseCase>();
+        services.AddScoped<IGetUserProfileUseCase, GetUserProfileUseCase>();
+        services.AddScoped<IChangePasswordUseCase, ChangePasswordUseCase>();
         services.AddScoped<IUpdateUsuariosUseCase, UpdateUsuariosUseCase>();
         services.AddScoped<IDoLoginUseCase, DoLoginUseCase>();
         services.AddScoped<IRegisterChamadosUseCase, RegisterChamadosUseCase>();

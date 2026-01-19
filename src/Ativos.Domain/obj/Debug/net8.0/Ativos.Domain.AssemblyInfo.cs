@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Ativos.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c738e5a3f4920a257be71203498b82c10b80be1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+baa9658c9c22d3b1f60957a2c67700455681ce2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Ativos.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Ativos.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

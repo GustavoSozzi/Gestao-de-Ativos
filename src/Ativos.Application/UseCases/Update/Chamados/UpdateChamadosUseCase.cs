@@ -32,6 +32,8 @@ public class UpdateChamadosUseCase : IUpdateChamadosUseCase
         var chamado = await _repository.GetById(loggedUser, id);
 
         if(chamado is null) { throw new NotFoundException("NOT FOUND");}
+        
+        chamado.Tags.Clear();
 
         _mapper.Map(request, chamado);
 

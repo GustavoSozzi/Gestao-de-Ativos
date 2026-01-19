@@ -22,10 +22,13 @@ public class AutoMapping : Profile
         CreateMap<RequestUsuariosJson, Usuario>() //ignora os dados password para criptografia da senha
             .ForMember(dest => dest.Password, config => config.Ignore());
         CreateMap<RequestVincularLicencaJson, Licenca>();
-        CreateMap<RequestChamadosJson, Chamado>();
         CreateMap<RequestContratosJson, Contrato>();
         CreateMap<RequestLicencasJson, Licenca>();
         CreateMap<RequestLocalizacaoJson, Localizacao>();
+        CreateMap<RequestChamadosJson, Chamado>().ForMember(dest => dest.Tags,
+            config => config.MapFrom(source => source.Tags.Distinct()));
+        CreateMap<Ativos.Communication.Enums.Tag, Tag>()
+            .ForMember(dest => dest.Value, config => config.MapFrom(source => source));
     }
 
     private void EntityToResponse()
@@ -38,9 +41,12 @@ public class AutoMapping : Profile
         CreateMap<Usuario, ResponseShortUsuarioJson>();
         CreateMap<Usuario, ResponseUsuarioJson>();
         CreateMap<Usuario, ResponseUsuariosJson>();
+        CreateMap<Usuario, ResponseUserProfileJson>();
         CreateMap<Usuario, ResponseRegisterUsuariosLicencasJson>()
             .ForMember(dest => dest.Ids_Licencas, opt => opt.MapFrom(src => src.licencas.Select(l => l.Id_Licenca).ToList()));
-        CreateMap<Chamado, ResponseRegisterChamadosJson>();
+        CreateMap<Usuario, ResponseAtivosJson>();
+        CreateMap<Chamado, ResponseRegisterChamadosJson>()
+            .ForMember(dest => dest.Tags, config => config.MapFrom(source => source.Tags.Select(tag => tag.Value)));
         CreateMap<Chamado, ResponseChamadosJson>();
         CreateMap<Chamado, ResponseShortChamadoJson>();
         CreateMap<Contrato, ResponseRegisterContratosJson>();

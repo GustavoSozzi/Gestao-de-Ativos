@@ -9,5 +9,6 @@ public class RequestChamadosJson
     public string Descricao { get; set; } = string.Empty;
     public string? Solucao { get; set; } =  string.Empty;
     public StatusChamado Status_Chamado { get; set; }
+    public IList<Tag> Tags { get; set; } = [];
     public long Id_Ativo { get; set; }
 }

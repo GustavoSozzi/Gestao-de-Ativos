@@ -61,17 +61,10 @@ internal class UsuariosRepository : IUsuariosWriteOnlyRepository, IUsuariosReadO
         _dbContext.Usuario.Update(usuario);
     }
 
-    public async Task<bool> Delete(long id)
+    public async Task Delete(Usuario usuario)
     {
-        var result = await _dbContext.Usuario.FirstOrDefaultAsync(usuario => usuario.Id_usuario == id);
+        var userToRemove = await _dbContext.Usuario.FindAsync(usuario.Id_usuario);
 
-        if(result is null)
-        {
-            return false;
-        }
-
-        _dbContext.Usuario.Remove(result);
-
-        return true;
+        _dbContext.Usuario.Remove(userToRemove!);
     }
 }

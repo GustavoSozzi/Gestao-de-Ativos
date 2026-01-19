@@ -13,4 +13,11 @@ public class AtivosDbContext : DbContext
     public DbSet<Contrato> Contratos { get; set; }
     public DbSet<Licenca> Licencas { get; set; }
     public DbSet<Localizacao> Localizacao { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Tag>().ToTable("Tags");
+    }
 }

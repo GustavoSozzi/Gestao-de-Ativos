@@ -17,10 +17,8 @@ public class CultureMiddleware
         var requestedCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
         var cultureInfo = new CultureInfo("en");
 
-        // Se o header Accept-Language está presente e é suportado
         if (!string.IsNullOrWhiteSpace(requestedCulture))
         {
-            // Limpa qualquer informação de qualidade (q=0.9, etc.)
             var cultureName = requestedCulture.Split(',')[0].Split(';')[0].Trim();
             
             if (supportedLanguages.Contains(cultureName))

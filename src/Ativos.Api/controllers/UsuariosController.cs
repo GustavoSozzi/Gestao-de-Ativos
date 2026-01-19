@@ -3,6 +3,8 @@ using Ativos.Application.UseCases.GetAll.Usuarios;
 using Ativos.Application.UseCases.GetById;
 using Ativos.Application.UseCases.Register.Usuarios;
 using Ativos.Application.UseCases.Update.Usuarios;
+using Ativos.Application.UseCases.Users.ChangePassword;
+using Ativos.Application.UseCases.Users.Profile;
 using Ativos.Communication.Requests;
 using Ativos.Communication.responses;
 using Ativos.Communication.responses.Register;
@@ -14,7 +16,6 @@ namespace Ativos.Api.controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize]
 public class UsuariosController : ControllerBase
 
 {
@@ -29,6 +30,7 @@ public class UsuariosController : ControllerBase
     }
     
     //Vincular um usuario a uma licenca
+    [Authorize]
     [HttpPost("{id}/licencas")]
     [ProducesResponseType(typeof(ResponseRegisterUsuariosLicencasJson), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
@@ -42,6 +44,7 @@ public class UsuariosController : ControllerBase
     }
     
     //Buscar licenças de um usuário
+    [Authorize]
     [HttpGet("{id}/licencas")]
     [ProducesResponseType(typeof(List<long>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
@@ -53,6 +56,7 @@ public class UsuariosController : ControllerBase
     
     //GetAll Usuarios
     [HttpGet]
+    [Authorize]
     [ProducesResponseType(typeof(ResponseRegisterUsuariosJson), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status204NoContent)]
     public async Task<IActionResult> GetAllUsuarios(
@@ -70,6 +74,7 @@ public class UsuariosController : ControllerBase
         return NoContent();
     }
     
+    [Authorize]
     [HttpGet] //Get user by id
     [Route("{id}")]
     [ProducesResponseType(typeof(ResponseUsuarioJson), StatusCodes.Status200OK)]
@@ -80,27 +85,47 @@ public class UsuariosController : ControllerBase
 
         return Ok(response);
     }
+
+    [Authorize]
+    [HttpGet("profile")]
+    [ProducesResponseType(typeof(ResponseUserProfileJson), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetProfile([FromServices] IGetUserProfileUseCase useCase)
+    {
+        var response = await useCase.Execute();
+
+        return Ok(response);
+    }
     
+    [Authorize]
     [HttpPut]
-    [Route("{id}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Update([FromServices] IUpdateUsuariosUseCase useCase, [FromRoute] long id,
-        [FromBody] RequestUsuariosJson request)
+    public async Task<IActionResult> Update([FromServices] IUpdateUsuariosUseCase useCase,
+        [FromBody] RequestUpdateUserJson request)
     {
-        await useCase.Execute(id, request);
+        await useCase.Execute(request);
         
         return NoContent();
     }
-
-    [HttpDelete]
-    [Route("{id}")]
+    
+    [Authorize]
+    [HttpPut("change-password")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
-    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> Delete([FromServices] IDeleteUsuarioUseCase useCase, [FromRoute] long id)
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> ChangePassword([FromServices] IChangePasswordUseCase useCase,
+        [FromBody] RequestChangePasswordJson request)
     {
-        await useCase.Execute(id);
+        await useCase.Execute(request);
+        
+        return NoContent();
+    }
+    
+    [Authorize]
+    [HttpDelete]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> Delete([FromServices] IDeleteUsuarioUseCase useCase)
+    {
+        await useCase.Execute();
         
         return NoContent();
     }

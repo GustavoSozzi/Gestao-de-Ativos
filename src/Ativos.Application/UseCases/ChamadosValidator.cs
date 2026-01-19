@@ -13,6 +13,10 @@ public class ChamadosValidator : AbstractValidator<RequestChamadosJson>
         RuleFor(chamados => chamados.Titulo).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
         RuleFor(chamados => chamados.Descricao).NotEmpty().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
         RuleFor(chamados => chamados.Status_Chamado).IsInEnum().WithMessage(ResourceErrorMessages.FIELD_REQUIRED);
+        RuleFor(chamados => chamados.Tags).ForEach(rule =>
+        {
+            rule.IsInEnum().WithMessage("tag type not supported");
+        });
         RuleFor(chamados => chamados.Id_Ativo).GreaterThan(0).WithMessage("Ativo é obrigatório");
     }
 

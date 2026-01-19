@@ -1,6 +1,7 @@
 using Ativos.Domain.Entities;
 using Ativos.Domain.Repositories.Chamados;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Ativos.Infrastructure.DataAccess.Repositories;
 
@@ -40,9 +41,9 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
 
     public async Task<Chamado?> GetById(Usuario usuario, long id)
     {
-        return await _dbContext.Chamados.Include(c => c.Ativo)
+        return await GetFullChamados().Include(c => c.Ativo)
             .Where(a => a.Ativo.id_usuario == usuario.Id_usuario)
-            .AsNoTracking().FirstOrDefaultAsync(chamados => chamados.Id_Chamado == id);
+            .FirstOrDefaultAsync(chamados => chamados.Id_Chamado == id);
     }
     
     public async Task<List<Chamado>> FilterByMonth(Usuario usuario, DateOnly date)
@@ -61,10 +62,11 @@ internal class ChamadosRepository : IChamadosWriteOnlyRepository, IChamadosReadO
             .ThenBy(chamados => chamados.Titulo)
             .ToListAsync();
     }
-    
 
-    public void Update(Chamado chamado)
+    public void Update(Chamado chamado) => _dbContext.Chamados.Update(chamado);
+
+    private IIncludableQueryable<Chamado, ICollection<Tag>> GetFullChamados()
     {
-        _dbContext.Chamados.Update(chamado);
+        return _dbContext.Chamados.Include(chamados => chamados.Tags);
     }
 }

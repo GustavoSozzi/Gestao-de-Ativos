@@ -171,6 +171,27 @@ namespace Ativos.Infrastructure.Migrations
                     b.ToTable("Localizacao");
                 });
 
+            modelBuilder.Entity("Ativos.Domain.Entities.Tag", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("ChamadoId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Value")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ChamadoId");
+
+                    b.ToTable("Tags", (string)null);
+                });
+
             modelBuilder.Entity("Ativos.Domain.Entities.Usuario", b =>
                 {
                     b.Property<long>("Id_usuario")
@@ -258,6 +279,17 @@ namespace Ativos.Infrastructure.Migrations
                     b.Navigation("Ativo");
                 });
 
+            modelBuilder.Entity("Ativos.Domain.Entities.Tag", b =>
+                {
+                    b.HasOne("Ativos.Domain.Entities.Chamado", "Chamado")
+                        .WithMany("Tags")
+                        .HasForeignKey("ChamadoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Chamado");
+                });
+
             modelBuilder.Entity("LicencaUsuario", b =>
                 {
                     b.HasOne("Ativos.Domain.Entities.Usuario", null)
@@ -276,6 +308,11 @@ namespace Ativos.Infrastructure.Migrations
             modelBuilder.Entity("Ativos.Domain.Entities.Ativo", b =>
                 {
                     b.Navigation("Chamados");
+                });
+
+            modelBuilder.Entity("Ativos.Domain.Entities.Chamado", b =>
+                {
+                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("Ativos.Domain.Entities.Localizacao", b =>

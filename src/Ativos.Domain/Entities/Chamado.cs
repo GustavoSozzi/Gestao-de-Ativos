@@ -14,7 +14,7 @@ public class Chamado
     public string Descricao { get; set; } = string.Empty;
     public string Solucao { get; set; } =  string.Empty;
     public StatusChamado Status_Chamado { get; set; }
-    
+    public ICollection<Tag> Tags { get; set; } = [];
     [ForeignKey("Ativo")]
     public long id_Ativo { get; set; }
     public Ativo Ativo { get; set; } = null!; //chamado lado dependente pela relacao (0,n)

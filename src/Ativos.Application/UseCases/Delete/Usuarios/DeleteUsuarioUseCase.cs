@@ -1,6 +1,7 @@
 using Ativos.Domain;
 using Ativos.Domain.Repositories;
 using Ativos.Domain.Repositories.Usuarios;
+using Ativos.Domain.Services.LoggedUser;
 using Ativos.Exception;
 using Ativos.Exception.ExceptionsBase;
 
@@ -10,21 +11,20 @@ public class DeleteUsuarioUseCase : IDeleteUsuarioUseCase
 {
     private readonly IUsuariosWriteOnlyRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly ILoggedUser _loggedUser;
 
-    public DeleteUsuarioUseCase(IUsuariosWriteOnlyRepository repository, IUnitOfWork unitOfWork)
+    public DeleteUsuarioUseCase(IUsuariosWriteOnlyRepository repository, IUnitOfWork unitOfWork, ILoggedUser loggedUser)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
+        _loggedUser = loggedUser;
     }
 
-    public async Task Execute(long id)
+    public async Task Execute()
     {
-        var result = await _repository.Delete(id);
+        var user = await _loggedUser.Get();
 
-        if(result == false)
-        {
-            throw new NotFoundException("Usuário não encontrado");
-        }
+        await _repository.Delete(user);
 
         await _unitOfWork.Commit();
     }
