@@ -61,8 +61,8 @@ bld/
 *.sln.iml
 
 # Configuration files with sensitive data
-appsettings.Development.json
-appsettings.Production.json
+**/*.appsettings.Development.json
+**/*.appsettings.Production.json
 **/appsettings.*.json
 !**/appsettings.example.json
 
