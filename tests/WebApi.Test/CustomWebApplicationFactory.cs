@@ -56,7 +56,7 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         var ativosAdmin = AddAtivos(dbContext, userAdmin, localizacao, ativoId: 19);
         Ativos_Admin = new AtivosIdentityManager(ativosAdmin);
         
-        AddChamados(dbContext, ativosAdmin);
+        AddChamados(dbContext, chamadoId: 2, tagId: 2, ativosAdmin);
         
         userTeamMember.licencas.Add(licenca);
         
@@ -125,9 +125,15 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
         return ativo;
     }
 
-    private void AddChamados(AtivosDbContext dbContext, Ativo ativo)
+    private void AddChamados(AtivosDbContext dbContext, long chamadoId, long tagId,  Ativo ativo)
     {
         var chamado = ChamadosBuilder.Build(ativo);
+
+        foreach (var tag in chamado.Tags)
+        {
+            tag.Id = tagId;
+            tag.ChamadoId = chamadoId;
+        }
         
         dbContext.Chamados.Add(chamado);
         

@@ -30,9 +30,4 @@
       <ProjectReference Include="..\CommonTestUtilities\CommonTestUtilities.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Users\Delete\" />
-      <Folder Include="Users\GetAll\" />
-    </ItemGroup>
-
 </Project>

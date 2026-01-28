@@ -37,6 +37,12 @@ public class ChamadosBuilder
             .RuleFor(r => r.Titulo, faker => faker.Random.String(10))
             .RuleFor(r => r.Descricao, faker => faker.Lorem.Sentence(3, 10))
             .RuleFor(r => r.Status_Chamado, faker => faker.PickRandom<StatusChamado>())
+            .RuleFor(r => r.Tags, faker => faker.Make(1, () => new Ativos.Domain.Entities.Tag
+            {
+                Id = 1,
+                Value = faker.PickRandom<Ativos.Domain.Enums.Tag>(),
+                ChamadoId = 1
+            }))
             .RuleFor(r => r.id_Ativo, _ => ativo.Id_ativo)
             .RuleFor(r => r.Ativo, _ => ativo);
             

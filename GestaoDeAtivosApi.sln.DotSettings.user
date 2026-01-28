@@ -160,6 +160,9 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0a6e4d29_002Dc32f_002D4687_002Daa16_002Df0c4209b4a5a/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Error_Name_Empty #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi" Presentation="&amp;lt;tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=217f2726_002D358b_002D4ae7_002D85b4_002D910208254498/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Error_Matricula_Already_Exist" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Project Location="/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi" Presentation="&amp;lt;tests&amp;gt;" /&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=27d92502_002Dc0eb_002D44be_002Dbd0f_002D99d7e0014a27/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Or&gt;
     &lt;ProjectFile&gt;3B510828-A46C-40BB-916D-662AA6F78323/d:Ativos/d:Register/f:RegisterAtivosValidatorTests.cs&lt;/ProjectFile&gt;
@@ -191,10 +194,11 @@
     &lt;ProjectFile&gt;3EA4E4F1-1075-471D-AF5B-9BB7353996DD/d:Ativos/d:Register/f:RegisterAtivosTest.cs&lt;/ProjectFile&gt;
   &lt;/Or&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=85856220_002Dcf40_002D479b_002Daff8_002D0cb9c1c39386/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Error_Ativo_Not_Found" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=964865c8_002Df5ad_002D48cb_002D8118_002D864de8f22bb5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Success_Excel" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi" Presentation="&amp;lt;tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=964865c8_002Df5ad_002D48cb_002D8118_002D864de8f22bb5/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Success_Excel" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e65542b1_002D0093_002D429c_002D99c7_002Db23cc479e97d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ChangePasswordUseCaseTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi" Presentation="&amp;lt;tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	

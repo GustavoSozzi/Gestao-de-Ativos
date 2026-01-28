@@ -13,12 +13,16 @@ public class UsuariosUpdateOnlyRepositoryBuilder
         _repository = new Mock<IUsuariosUpdateOnlyReposiitory>();
     }
     
-    public UsuariosUpdateOnlyRepositoryBuilder GetById(Usuario? usuarios)
+    public static UsuariosUpdateOnlyRepositoryBuilder Build() => new UsuariosUpdateOnlyRepositoryBuilder();
+    
+    public UsuariosUpdateOnlyRepositoryBuilder WithUser(Usuario usuario)
     {
-        _repository.Setup(usuarioRepository => usuarioRepository.GetById(usuarios.Id_usuario)).ReturnsAsync(usuarios);
+        _repository
+            .Setup(r => r.GetById(usuario.Id_usuario))
+            .ReturnsAsync(usuario);
 
         return this;
     }
-    
-    public IUsuariosUpdateOnlyReposiitory Build() => _repository.Object;
+
+    public IUsuariosUpdateOnlyReposiitory BuildRepository() => _repository.Object;
 }

@@ -39,5 +39,16 @@ public class UserReadOnlyRepositoryBuilder
         return this;
     }
 
+    public UserReadOnlyRepositoryBuilder GetAll(List<Usuario> usuarios)
+    {
+        _repository.Setup(userRepository => userRepository.GetAll(It.IsAny<long?>(), 
+            It.IsAny<string?>(), 
+            It.IsAny<string?>(),
+            It.IsAny<string?>(), 
+            It.IsAny<string?>())).ReturnsAsync(usuarios);
+
+        return this;
+    }
+
     public IUsuariosReadOnlyRepository Build() => _repository.Object;
 }

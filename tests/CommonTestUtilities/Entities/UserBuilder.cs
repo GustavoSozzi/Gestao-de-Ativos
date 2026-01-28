@@ -7,6 +7,27 @@ namespace CommonTestUtilities.Entities;
 
 public class UserBuilder
 {
+    public static List<Usuario> Collection(uint count = 2)
+    {
+        var list = new List<Usuario>();
+        var userTest = Build();
+        var matricula = userTest.Matricula;
+        
+        if (count == 0) count = 1;
+
+        var usuarioId = 1;
+
+        for (int i = 0; i < count; i++) {
+            var usuarios = Build();
+            usuarios.Matricula = matricula++;
+            usuarios.Id_usuario = usuarioId++;
+            
+            list.Add(usuarios);
+        }
+
+        return list;
+    }
+    
     public static Usuario Build(string role = Roles.TEAM_MEMBER)
     {
         var passwordEncripter = PasswordEncripterBuilder.Build();

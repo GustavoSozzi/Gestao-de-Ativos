@@ -1,12 +1,16 @@
+using System.Net;
+using System.Text.Json;
+using FluentAssertions;
+
 namespace WebApi.Test.Users.GetAll;
 
-public class GetAllUsersTest : AtivosClassFixture
+public class GetAllUsuariosTest : AtivosClassFixture
 {
     private const string METHOD = "api/Usuarios";
 
     private readonly string _token;
 
-    public GetAllUTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
+    public GetAllUsuariosTest(CustomWebApplicationFactory webApplicationFactory) : base(webApplicationFactory)
     {
         _token = webApplicationFactory.User_Team_Member.GetToken();
     }
@@ -22,6 +26,6 @@ public class GetAllUsersTest : AtivosClassFixture
 
         var response = await JsonDocument.ParseAsync(body);
 
-        response.RootElement.GetProperty("ativos").EnumerateArray().Should().NotBeNullOrEmpty();
+        response.RootElement.GetProperty("usuarios").EnumerateArray().Should().NotBeNullOrEmpty();
     }
 }
