@@ -23,4 +23,8 @@
       <ProjectReference Include="..\Ativos.Infrastructure\Ativos.Infrastructure.csproj" />
     </ItemGroup>
 
+    <Target Name="CreateCultureFolders" BeforeTargets="CopyFilesToOutputDirectory;CopyFilesToOutputDirectoryAlways">
+      <MakeDir Directories="$(OutDir)pt-br" />
+    </Target>
+
 </Project>

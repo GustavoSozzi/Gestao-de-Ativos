@@ -161,3 +161,4 @@
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Api/obj/Debug/net8.0/Ativos.Api.genruntimeconfig.cache
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Api/obj/Debug/net8.0/ref/Ativos.Api.dll
 /Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Api/bin/Debug/net8.0/appsettings.Tests.json
+/Users/gustavosozzibom/Documents/Ufgd/Projeto banco de dados/GestaoDeAtivosApi/src/Ativos.Api/bin/Debug/net8.0/appsettings.Production.json

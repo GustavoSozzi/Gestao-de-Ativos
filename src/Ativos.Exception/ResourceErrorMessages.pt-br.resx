@@ -26,4 +26,7 @@
     <data name="MATRICULA_OU_SENHA_INVALIDA" xml:space="preserve">
         <value>Matricula ou senha invalida</value>
     </data>
+    <data name="ERROR_USER_NOT_FOUND" xml:space="preserve">
+        <value>Usuario nao encontrado</value>
+    </data>
 </root>

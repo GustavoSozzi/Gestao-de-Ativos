@@ -48,7 +48,8 @@ public class AutoMapping : Profile
         CreateMap<Chamado, ResponseRegisterChamadosJson>()
             .ForMember(dest => dest.Tags, config => config.MapFrom(source => source.Tags.Select(tag => tag.Value)));
         CreateMap<Chamado, ResponseChamadosJson>();
-        CreateMap<Chamado, ResponseShortChamadoJson>();
+        CreateMap<Chamado, ResponseShortChamadoJson>()
+            .ForMember(dest => dest.Tags, config => config.MapFrom(source => source.Tags.Select(tag => tag.Value)));
         CreateMap<Contrato, ResponseRegisterContratosJson>();
         CreateMap<Licenca, ResponseRegisterLicencasJson>();
         CreateMap<Licenca, ResponseLicencasJson >();
